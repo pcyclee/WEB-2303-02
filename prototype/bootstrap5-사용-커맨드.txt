@@ -1,0 +1,37 @@
+npm install -g sass
+npm install -g cross-env
+
+npm install -g npm-run-all
+
+npm install -g postcss
+npm install -D postcss
+
+npm install -g cross-env
+npm install -g cross-env-shell
+
+stylelint
+fusv
+cleancss
+
+
+rollup
+node
+eslint
+terser
+
+karma
+hugo
+lockfile-lint
+ncu
+nodemon
+
+npm list -g postcss
+npm list -g npm-run-all
+
+npm install -g node-sass
+node-sass --output-style compressed foobar.scss > foobar.css
+
+
+node-sass --output-style compressed ./scss/bootstrap.scss > ./dist/bootstrap2.min.css
+
+
