@@ -22,7 +22,7 @@ jobs:
       contents: read
     name: JS Tests
     runs-on: ubuntu-latest
-
+    if: github.repository == 'twbs/bootstrap'
     steps:
       - name: Clone repository
         uses: actions/checkout@v3

@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
-
+    if: github.repository == 'twbs/bootstrap'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
