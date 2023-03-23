@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" -->
+    <link href="ui/bootstrap-5.3.0/css/main.css" rel="stylesheet" >	
+
+    <!-- Icons css yclee 2022-10-25 -->
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+</head>
+
+<body>
+<!-- html contents START -->
+
+	    <!-- CHART AREA -->
+      <div id="chart01" style="width: 90%; height:150px; background-color: bisque;"></div>
+      <div id="chartLegacy" style="width: 90%; height:350px; background-color: white;"></div>
+      <div id="chartDw" style="width: 90%; height:350px; background-color: bisque;"></div>
+
+<!-- html contents END -->
+
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" ></script-->
+    <!--script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js" ></script-->
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.js" ></script>    
+
+    <script src="ui/jquery/jquery-3.5.1.js" ></script>
+    <script src="ui/apache-echart-5.4/echarts.min.js" ></script>
+
+    <script type="text/javascript">
+
+    var formatUtil;
+
+    function fn_set_event()
+    {
+      formatUtil = echarts.format;
+
+      //alert("fn_set_event");
+      drawChartSample();
+
+      drawChartLegacy();
+
+
+      //initEcharts(echarts);
+
+      //drawChartDw();
+
+      //convertData(rawData, data, '');
+    }
+
+    function drawTreemapChart(pChartData, pChartName)
+    {
+//      var chartDom = document.getElementById('chart01');
+      var chartDom = document.getElementById(pChartName);
+      var myChart = echarts.init(chartDom);
+      myChart.showLoading();
+      myChart.hideLoading();
+      
+      var option;
+      option = {
+              title: {
+                //text: 'ECharts Options',
+                //subtext: '2016/04',
+                //left: 'leafDepth'
+              },            
+              tooltip: {
+                trigger: 'item',
+                //triggerOn: 'mousemove'
+
+                  formatter: function (info) {
+                      var value = info.value;
+                      var treePathInfo = info.treePathInfo;
+                      var treePath = [];
+                      var tablePctVal = 0;
+                      var tableTotCntVal = 0;
+                      var subjName = '';
+                      //alert(JSON.stringify(info));
+                      //console.log(JSON.stringify(info));
+                      tableTotCntVal = treePathInfo[0].value;
+
+                      for (var i = 1; i < treePathInfo.length; i++) {
+                          treePath.push(treePathInfo[i].name);
+                      }
+
+                      if (treePathInfo.length == 2) {
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      }
+
+                      if (treePathInfo.length == 3) {
+                        tableTotCntVal = treePathInfo[1].value;
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      } else {
+                        return [
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          '' + value + '',
+                        ].join('');
+                      }
+
+                      if ( treePathInfo.length == 3 ) {
+                        console.log('1:'+ JSON.stringify(treePathInfo[1]));
+                        console.log('2:'+ JSON.stringify(treePathInfo[2]));
+                        tablePctVal = treePathInfo[2].value / treePathInfo[1].value * 100;
+//                        tablePctVal = Math.ceil(tablePctVal / 10) * 10;
+                        subjName = treePathInfo[2].value + '/' + treePathInfo[1].value;
+                      }                      
+
+                  }
+
+              },
+              series: [
+                          {
+                            name: '기간계',
+                            type: 'treemap',
+                            data: pChartData.children,
+                            visibleMin: 300,
+                            //data: data.children,
+                            leafDepth: 1,
+                            label: {
+                              show: true,
+                              formatter: function (params) {
+
+                                if (params.treePathInfo.length == 2) {
+                                  //return '{${params.name}}'
+                                }
+                                var totSize=  params.treePathInfo[0].value;
+                                var size=(params.value/totSize)*100;
+                                if (size>8) {
+                                  return '{lg|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + 2 + '}';
+                                }
+                                if (size>2) {
+                                  return '{md|'+params.name+'}';
+                                }
+                                return '{sm|'+params.name+'}';
+                              },
+                              rich: {
+                                lg: { fontSize: 20, },
+                                lgRed: { fontSize: 20, color: '#f00'},                                
+                                md: { fontSize: 15, },
+                                mdRed: { fontSize: 15, color: '#f00'},
+                                sm: { fontSize: 10, }
+                              }
+                            },
+                            levels: [
+                                      {
+                                        itemStyle: {
+                                          borderColor: '#DDDDDD', 
+                                          //borderColor: '#555', 
+                                          borderWidth: 4,
+                                          gapWidth: 4
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.6],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.7,
+                                          gapWidth: 2,
+                                          borderWidth: 2
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.6,
+                                          gapWidth: 1
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5]
+                                      }
+                                    ]
+                          }
+                      ]
+               };
+      
+      myChart.setOption(option); // 차트 디스플레이
+      window.addEventListener('resize', myChart.resize);      
+      myChart.on('click', 'series', function(params) {
+        // Print name in console
+        console.log(params.name);
+        console.log(params.dataIndex);
+        console.log(params.data);
+        console.log(JSON.stringify(params.data));
+
+        if ( !params.hasOwnProperty('data') ) {
+          return;
+        }
+        if ( params.data.bizname != undefined ) {
+          alert(params.data.bizname + ":" + params.treePathInfo.length);
+          if ( params.treePathInfo.length == 3 ) {
+            params.preventDefault();            
+            params.stopPropagation();
+            params.preventDefault();
+          }
+        }
+
+        return;
+      });
+    }
+
+    function getChartDataLegacy(){
+      var jsonVal = {
+            "계약(CT)": {
+              //"$count": 661,
+              "계약관리": {"$count": 357,"$bizname": "A01"},
+              "청약": {"$count": 304},
+              "UW": {"$count": 288},
+              "계약": {"$count": 307},
+              "입출금": {"$count": 178},
+              "안내증빙": {"$count": 45},
+              "출수재": {"$count": 137},
+              "대외연계": {"$count": 293},
+              "계약권한": {"$count": 27},
+              "보험수리": {"$count": 144},
+              "통계지표": {"$count": 139},
+              "방카슈랑스": {"$count": 56},
+              "TM": {"$count": 46},
+            },
+            "법인영업(CS)": {
+              //"$count": 295,              
+              "법인기업정보": {"$count": 62},
+              "법인영업활동": {"$count": 61},
+              "법인매출실적": {"$count": 109},
+              "방카제휴": {"$count": 63},
+            },
+            "준법감시(CP)": {
+              //"$count": 295,              
+              "내부통제": {"$count": 50},
+              "자금세탁": {"$count": 47},
+              "세무서관리": {"$count": 8},
+              "법률지식시스템": {"$count": 6},
+              "상시모니터링": {"$count": 61},
+              "정보보호": {"$count": 42},
+            },
+            "개인영업(PS)": {
+              //"$count": 295,              
+              "증원관리": {"$count": 91},
+              "영업조직": {"$count": 92},
+              "영업활동": {"$count": 355},
+              "영업매출": {"$count": 215},
+              "영업이관": {"$count": 11},
+              "영업소득": {"$count": 344},
+              "TC업무": {"$count": 103},
+              "GS": {"$count": 65},
+            }
+
+      }
+      return jsonVal;
+    }
+
+    const dataLegacy = {
+      children: []
+    };
+    const dataDw = {
+      children: []
+    };
+
+    function drawChartLegacy(){
+		  initChartLegacy();
+		  var chartData1 = getChartDataLegacy();
+		  var chartData = { children: [] };      
+      convertData(chartData1, chartData, '');
+      drawTreemapChart(chartData, 'chartLegacy');
+    }
+
+    function drawChartDw(){
+		  initChartDw();
+		  var chartData1 = getChartDataSample();
+		  var chartData = { children: [] };
+      convertData(chartData1, chartData, '');
+		  drawTreemapChart(chartData, 'chartDw');
+    }
+
+    function drawChartSample(){
+		  initChartDw();
+		  var chartData = getChartDataSample();
+		  drawChart(chartData);
+    }
+
+    function convertData(source, target, basePath) {
+    for (let key in source) {
+      let path = basePath ? basePath + '.' + key : key;
+      if (!key.match(/^\$/)) {
+        target.children = target.children || [];
+        const child = {
+          name: path
+        };
+        target.children.push(child);
+        convertData(source[key], child, path);
+      }
+    }
+    if (!target.children) {
+      target.value = source.$count || 1;
+      target.bizname = source.$bizname || 1;      
+    } else {
+      target.children.push({
+        name: basePath,
+        value: source.$count,
+        bizname: 'null'
+      });
+    }
+  }
+  
+    function getChartDataSample(){
+		var chartData1;
+
+		chartData1 = {"name": "비즈니스 아키텍쳐 샘플", 
+				      "children": 
+				    	  
+			    	  [{"name": "금융통계정보시스템", 
+			            "children" : 
+			        	    [{"name": "테마통계", 
+							  "children":
+								  [{"name": "금융통계월보",
+								    "children": 
+								    	[{"name": "손해보험통계",
+										  "children":
+											  [{"name":"손해보험회사 일반현황",
+												"children":
+													[{"name":"기본항목",
+													  "children":
+														  [{"name":"손해보험.회사수"},
+														   {"name":"손해보험.점포수"},
+														   {"name":"손해보험.임직원수"},
+														   {"name":"손해보험.대리점수"},
+														   {"name":"손해보험.설계사수.계"},
+														   {"name":"손해보험.설계사수.전속설계사"}
+														   ]}
+													]},
+											   {"name":"손해보험회사 주요경영지표"}
+											  ]},
+								         {"name": "은행통계", 
+										  "children":
+											  [{"name":"일반은행 은행계정 난외계정"},
+											   {"name":"일반은행 신탁계정 재무상태표"}
+											  ]} 
+										]}
+								  ]}
+			                ]}
+			    	  
+				          ]};
+		return chartData1.children[0];
+    }
+
+    var gInitialTreeDepth = -1;
+
+    //-------------------------------------------
+    function drawChart(pChartData) { 
+		console.log("drawChart");
+		//var myChart = echarts.init(document.getElementById('chart')); // echarts init 메소드로 id=chart인 DIV에 차트 초기화
+		
+		var chartDom = document.getElementById('chart01');
+		var myChart = echarts.init(chartDom);
+		myChart.showLoading();
+		myChart.hideLoading();
+		
+		var option;
+		option = {
+				  
+			      tooltip: {
+			        trigger: 'item',
+			        triggerOn: 'mousemove'
+			      },
+			      series: [
+			        {
+			          type: 'tree',
+			          data: [pChartData],
+			          top: '5%',
+			          left: '15%', // for tree root label space
+			          //left: '7%',
+			          bottom: '3%',
+			          right: '15%',
+                      //symbol: 'roundRect',
+			          symbolSize: 13,
+                      //itemStyle: {borderColor:'#EEEEEE'},
+                      //itemStyle: {color:'#E0E0E0'},
+//                      edgeShape: 'polyline',
+                      edgeShape: 'curve',
+                      edgeForkPosition: '80%', // 63%
+                      initialTreeDepth: gInitialTreeDepth, // -1
+                      itemStyle: {color:'#eaaf4c'}, //#ea634b // #FF2020 //eaaf4c
+                      lineStyle: {
+                        width: 2
+                      },                      
+                      label: {
+                          position: 'top',
+                          //position: 'left',
+                          verticalAlign: 'middle',
+                          align: 'right',
+                          //align: 'right',
+                          fontSize: 12
+                        },
+			          leaves: {
+			            label: {
+			              position: 'right',
+			              verticalAlign: 'middle',
+			              align: 'left'
+			            }
+			          },
+			          emphasis: {
+			            focus: 'descendant'
+			          },
+			          expandAndCollapse: true,
+			          animationDuration: 550,
+			          animationDurationUpdate: 750
+			        }
+			      ]
+			    };		
+		
+		myChart.setOption(option); // 차트 디스플레이
+	}
+
+    function initChart01(){
+      var chartDom = document.getElementById('chart01');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+
+    function initChartLegacy(){
+      var chartDom = document.getElementById('chartLegacy');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+    
+    function initChartDw(){
+      var chartDom = document.getElementById('chartDw');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }    
+
+    $(document).ready(function() {
+        //이벤트 설정
+        fn_set_event();
+        //fn_drawChartBizArchi();
+        //drawChartSample();
+      });
+
+    </script>
+</body>    
+
+</head>
+</body>
+</html>
