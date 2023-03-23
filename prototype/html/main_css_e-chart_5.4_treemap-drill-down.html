@@ -22,6 +22,40 @@
 <body>
 <!-- html contents START -->
 
+<div class="container mt-4">
+  <!-- 탭 메뉴 -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">Tab 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">Tab 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#tab3" role="tab">Tab 3</a>
+    </li>
+  </ul>
+
+  <!-- 탭 내용 -->
+  <div class="tab-content mt-4">
+    <div class="tab-pane fade show active" id="tab1" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+
+      <div id="chartLegacy" style="width: 100%; height:100%; background-color: bisque;"></div>
+
+    </div>
+    <div class="tab-pane fade" id="tab2" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+
+      <div id="chartDw" style="width: 100%; height:100%; background-color: bisque;"></div>
+
+    </div>
+    <div class="tab-pane fade" id="tab3" role="tabpanel">
+      <h4>Tab 3 Content</h4>
+      <p>Aliquam eget enim quis erat consectetur eleifend. Morbi vitae ante ac orci convallis pulvinar sed vel odio.</p>
+    </div>
+  </div>
+</div>
+
+
 	    <!-- CHART AREA -->
       <div id="chart01" style="width: 90%; height:150px; background-color: bisque;"></div>
       <div id="chartLegacy" style="width: 90%; height:350px; background-color: white;"></div>
@@ -201,7 +235,7 @@
       
       myChart.setOption(option); // 차트 디스플레이
       window.addEventListener('resize', myChart.resize);      
-      myChart.on('click', 'series', function(params) {
+      myChart.on('click', function(params) {
         // Print name in console
         console.log(params.name);
         console.log(params.dataIndex);
@@ -212,7 +246,7 @@
           return;
         }
         if ( params.data.bizname != undefined ) {
-          alert(params.data.bizname + ":" + params.treePathInfo.length);
+          //alert(params.data.bizname + ":" + params.treePathInfo.length);
           if ( params.treePathInfo.length == 3 ) {
             params.preventDefault();            
             params.stopPropagation();
