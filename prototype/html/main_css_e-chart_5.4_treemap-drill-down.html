@@ -26,40 +26,237 @@
   <!-- 탭 메뉴 -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">Tab 1</a>
+      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">기간계</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">Tab 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" href="#tab3" role="tab">Tab 3</a>
+      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">정보계</a>
     </li>
   </ul>
 
   <!-- 탭 내용 -->
   <div class="tab-content mt-4">
+    <!-- tab1 -->
     <div class="tab-pane fade show active" id="tab1" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
 
-      <div id="chartLegacy" style="width: 100%; height:100%; background-color: bisque;"></div>
+      <div class="d-flex flex-row mb-3">
+        <div class="p-2" style="width: 300px; background-color: #DEEBF7;">
+          <!-- LEFT AERA ////////////////////-->
+          <div class="ps-3 pe-3 pt-3 pb-3 " style="background-color: #DEEBF7; height: 400px; width: 240px; float: left; position: relative;">
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+              <span style="font-weight: bold; font-size: 14px">전체테이블수</span>
+            </div>
+
+            <div align="center" class="pt-2 pb-3">
+              <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
+                8,472
+                <span style="color: red; font-size: 10px;">▲3</span>
+              </span>
+            </div>
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>                  
+              <span style="font-weight: bold; font-size: 14px">최근 신규 테이블(2주)</span>
+            </div>
+            <div align="left" class="pt-2">
+              <ul style="padding-left: 10px">
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">방카슈랑스고객정보</li>
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">장기보험요율정보</li>
+              </ul>
+              <!--span style="font-weight: bold; font-size: 12px">최근 신규 테이블(2주)</span-->
+            </div>
+          </div>        
+          <!-- LEFT AERA ////////////////////-->
+      </div>
+        <div class="p-2" style="width: 80%; min-width: 100px; background-color: blueviolet;">Flex item 2</div>
+        <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
+        <div id="tableUsageTop10" class="p-2" style="width: 240px; background-color: gray;">Flex item 3</div>
+      </div>
+      <!--div class="container">
+        <div class="row d-flow d-flex">
+          <div class="" style="width: 240px; background-color: bisque;">첫번째 컬럼</div>
+          <div class="" style="min-width: 100px; max-width: 1000px; background-color: blueviolet;">두번째 컬럼</div>
+          <div class="" style="width: 240px; background-color: gray;">세번째 컬럼</div>
+        </div>
+      </div>
+    -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+<!--
+              <div class="" style="background-color: bisque; height: 100%; width: 240px; float: left; padding: 0 20px 20px 10px; position: relative;">
+-->
+              <div class="ps-3 pe-3 pt-3 pb-3 " style="background-color: #DEEBF7; height: 400px; width: 240px; float: left; position: relative;">
+
+                <div align="left" class="mt-1">
+                  <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+                  <span style="font-weight: bold; font-size: 14px">전체테이블수</span>
+                </div>
+
+                <div align="center" class="pt-2 pb-3">
+                  <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
+                    8,472
+                    <span style="color: red; font-size: 10px;">▲3</span>
+                  </span>
+                </div>
+
+                <div align="left" class="mt-1">
+                  <span style="font-weight: bold; font-size: 14px; color:blue;">></span>                  
+                  <span style="font-weight: bold; font-size: 14px">최근 신규 테이블(2주)</span>
+                </div>
+                <div align="left" class="pt-2">
+                  <ul style="padding-left: 10px">
+                    <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">방카슈랑스고객정보</li>
+                    <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">장기보험요율정보</li>
+                  </ul>
+                  <!--span style="font-weight: bold; font-size: 12px">최근 신규 테이블(2주)</span-->
+                </div>
+              </div>
+<!--
+              <div class="" style="background-color: blueviolet; margin: -1.5rem 0 -1.5rem 250px; border-left: 5px solid var(--ct-body-bg); padding: 1.5rem 0 1.5rem 25px;">
+-->
+              <div class="" id="" style="background-color: #DEEBF7; height: 400px; border-left: 5px solid var(--ct-body-bg); ">
+
+                <!-- 레거시 차트 영역 -->
+                <div class="" id="chartLegacy" style="height: 100%; overflow: hidden;">
+                </div>
+                <!--
+                <div id="chartLegacy" style="width: 100%; height:100%; background-color: bisque;"></div>
+                -->
+                
+              </div>
+
+              <div class="" style="background-color: gray; width: 240px; float: right; padding: 0 20px 20px 10px; position: relative;">
+                테이블활용현황
+              </div>
+
+              
+<!--
+TABLE 정보 
+-->       
+<div class="row">
+
+  <div class="col-12" >
+    <span >&nbsp;</span>
+  </div>
+
+  <div align="left" class="mt-2">
+    <span style="font-weight: bold; font-size: 20px">계약관리</span>
+  </div>
+
+  <div align="right" class="mb-2">
+    <span style="color: red; font-size: 12px;">용량(MB)/건수는 데이터 기준일 기반으로 수정되어 있습니다.</span>
+    <button type="button" class="btn btn-secondary btn-sm">최근 생성일순 정렬</button>
+    <button type="button" class="btn btn-secondary btn-sm">+펼치기</button>
+    <button type="button" class="btn btn-secondary btn-sm justify-content-end">-펼치기</button>
+  </div>
+
+  <div class="col-12">
+
+    <table class="table table-striped table-bordered ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>       
+  </div>
+</div>
+<!--
+TABLE 정보 
+-->       
+
+            </div>
+          </div>
+        </div>
+  
+      </div>
 
     </div>
+    <!-- tab2 -->    
     <div class="tab-pane fade" id="tab2" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
-
       <div id="chartDw" style="width: 100%; height:100%; background-color: bisque;"></div>
-
-    </div>
-    <div class="tab-pane fade" id="tab3" role="tabpanel">
-      <h4>Tab 3 Content</h4>
-      <p>Aliquam eget enim quis erat consectetur eleifend. Morbi vitae ante ac orci convallis pulvinar sed vel odio.</p>
     </div>
   </div>
 </div>
+<!-- offcanvas -->
+
+<button style="display: none;" id="showTableUsageTop10" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="offcanvas-footer">
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>  
+</div>
+
+<!-- offcanvas -->
 
 
-	    <!-- CHART AREA -->
+	    <!-- CHART AREA 
       <div id="chart01" style="width: 90%; height:150px; background-color: bisque;"></div>
       <div id="chartLegacy" style="width: 90%; height:350px; background-color: white;"></div>
       <div id="chartDw" style="width: 90%; height:350px; background-color: bisque;"></div>
+-->
 
 <!-- html contents END -->
 
@@ -73,13 +270,15 @@
     <script type="text/javascript">
 
     var formatUtil;
+    var chartDomLegacy;
+    var myChartLegacy;
 
     function fn_set_event()
     {
       formatUtil = echarts.format;
 
       //alert("fn_set_event");
-      drawChartSample();
+      //drawChartSample();
 
       drawChartLegacy();
 
@@ -93,11 +292,10 @@
 
     function drawTreemapChart(pChartData, pChartName)
     {
-//      var chartDom = document.getElementById('chart01');
-      var chartDom = document.getElementById(pChartName);
-      var myChart = echarts.init(chartDom);
-      myChart.showLoading();
-      myChart.hideLoading();
+      chartDomLegacy = document.getElementById(pChartName);
+      myChartLegacy = echarts.init(chartDomLegacy);
+      myChartLegacy.showLoading();
+      myChartLegacy.hideLoading();
       
       var option;
       option = {
@@ -172,6 +370,8 @@
                             type: 'treemap',
                             data: pChartData.children,
                             visibleMin: 300,
+                            //width: '95%', height: '95%',
+                            width: '100%', height: '100%',
                             //data: data.children,
                             leafDepth: 1,
                             label: {
@@ -233,14 +433,20 @@
                       ]
                };
       
-      myChart.setOption(option); // 차트 디스플레이
-      window.addEventListener('resize', myChart.resize);      
-      myChart.on('click', function(params) {
+      myChartLegacy.setOption(option); // 차트 디스플레이
+      window.addEventListener('resize', myChartLegacy.resize);      
+      myChartLegacy.on('click', function(params) {
         // Print name in console
         console.log(params.name);
         console.log(params.dataIndex);
         console.log(params.data);
         console.log(JSON.stringify(params.data));
+        hideTableUsageDivTop10();
+        return;
+        if ( params.name == undefined ) {
+          hideTableUsageDivTop10();
+          return;
+        }
 
         if ( !params.hasOwnProperty('data') ) {
           return;
@@ -248,9 +454,12 @@
         if ( params.data.bizname != undefined ) {
           //alert(params.data.bizname + ":" + params.treePathInfo.length);
           if ( params.treePathInfo.length == 3 ) {
-            params.preventDefault();            
-            params.stopPropagation();
-            params.preventDefault();
+            //params.stopPropagation();
+            //params.preventDefault();            
+            //params.event.stopPropagation();
+            //params.event.preventDefault();
+            //showTableUsageOffCanvasTop10();
+            showTableUsageDivTop10();
           }
         }
 
@@ -493,7 +702,21 @@
         fn_set_event();
         //fn_drawChartBizArchi();
         //drawChartSample();
-      });
+    });
+    function hideTableUsageDivTop10(){
+      $("#tableUsageTop10").css("display","none");  // 속성값 : none, block
+    }
+    function showTableUsageDivTop10(){
+      $("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+    }
+    function showTableUsageOffCanvasTop10(){
+      // 버튼 요소 찾기
+      var button = document.getElementById("showTableUsageTop10");
+      // 버튼 클릭 이벤트 발생
+      //button.click();
+
+      $("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+    }
 
     </script>
 </body>    
