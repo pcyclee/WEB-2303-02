@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" -->
+    <link href="ui/bootstrap-5.3.0/css/main.css" rel="stylesheet" >	
+
+    <!-- Icons css yclee 2022-10-25 -->
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+</head>
+
+<body>
+<!-- html contents START -->
+
+<div class="container mt-4">
+  <!-- 탭 메뉴 -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">기간계</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">정보계</a>
+    </li>
+  </ul>
+
+  <!-- 탭 내용 -->
+  <div class="tab-content mt-4">
+    <!-- tab1 -->
+    <div class="tab-pane fade show active" id="tab1" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+
+      <div class="d-flex flex-row mb-3">
+        <div class="p-2" style="width: 300px; background-color: #DEEBF7;">
+          <!-- LEFT AERA ////////////////////-->
+          <div class="ps-3 pe-3 pt-3 pb-3 " style="background-color: #DEEBF7; height: 400px; width: 240px; float: left; position: relative;">
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+              <span style="font-weight: bold; font-size: 14px">전체테이블수</span>
+            </div>
+
+            <div align="center" class="pt-2 pb-3">
+              <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
+                8,472
+                <span style="color: red; font-size: 10px;">▲3</span>
+              </span>
+            </div>
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>                  
+              <span style="font-weight: bold; font-size: 14px">최근 신규 테이블(2주)</span>
+            </div>
+            <div align="left" class="pt-2">
+              <ul style="padding-left: 10px">
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">방카슈랑스고객정보</li>
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">장기보험요율정보</li>
+              </ul>
+              <!--span style="font-weight: bold; font-size: 12px">최근 신규 테이블(2주)</span-->
+            </div>
+          </div>        
+          <!-- LEFT AERA ////////////////////-->
+      </div>
+        <div class="p-2" style="width: 80%; min-width: 100px; background-color: blueviolet;">
+          <!-- 레거시 차트 영역 -->
+          <div class="" id="chartLegacy" style="height: 100%; overflow: hidden;">
+          </div>
+        </div>
+        <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
+        <div id="tableUsageTop10" class="p-2" style="display:none; width: 240px; background-color: gray;">Flex item 3</div>
+      </div>
+      <!--div class="container">
+        <div class="row d-flow d-flex">
+          <div class="" style="width: 240px; background-color: bisque;">첫번째 컬럼</div>
+          <div class="" style="min-width: 100px; max-width: 1000px; background-color: blueviolet;">두번째 컬럼</div>
+          <div class="" style="width: 240px; background-color: gray;">세번째 컬럼</div>
+        </div>
+      </div>
+    -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+<!--
+              <div class="" style="background-color: bisque; height: 100%; width: 240px; float: left; padding: 0 20px 20px 10px; position: relative;">
+-->
+
+
+              
+<!--
+TABLE 정보 
+-->       
+<div class="row">
+
+  <div align="left" class="mt-2">
+    <span style="font-weight: bold; font-size: 20px">계약관리</span>
+  </div>
+
+  <div align="right" class="mb-2">
+    <span style="color: red; font-size: 12px;">용량(MB)/건수는 데이터 기준일 기반으로 수정되어 있습니다.</span>
+    <button type="button" class="btn btn-secondary btn-sm">최근 생성일순 정렬</button>
+    <button id="btnExpand" type="button" class="btn btn-secondary btn-sm">+펼치기</button>
+    <button id="btnCollapse" type="button" class="btn btn-secondary btn-sm justify-content-end">-펼치기</button>
+  </div>
+
+  <div class="col-12">
+
+    <table class="table table-striped table-bordered ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>       
+  </div>
+</div>
+<!--
+TABLE 정보 
+-->       
+
+            </div>
+          </div>
+        </div>
+  
+      </div>
+
+    </div>
+    <!-- tab2 -->    
+    <div class="tab-pane fade" id="tab2" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+      <div id="chartDw" style="width: 100%; height:100%; background-color: bisque;"></div>
+    </div>
+  </div>
+</div>
+<!-- offcanvas -->
+
+<button style="display: none;" id="showTableUsageTop10" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="offcanvas-footer">
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>  
+</div>
+
+<!-- offcanvas -->
+
+
+	    <!-- CHART AREA 
+      <div id="chart01" style="width: 90%; height:150px; background-color: bisque;"></div>
+      <div id="chartLegacy" style="width: 90%; height:350px; background-color: white;"></div>
+      <div id="chartDw" style="width: 90%; height:350px; background-color: bisque;"></div>
+-->
+
+<!-- html contents END -->
+
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" ></script-->
+    <!--script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js" ></script-->
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.js" ></script>    
+
+    <script src="ui/jquery/jquery-3.5.1.js" ></script>
+    <script src="ui/apache-echart-5.4/echarts.min.js" ></script>
+
+    <script type="text/javascript">
+
+    var formatUtil;
+    var chartDomLegacy;
+    var myChartLegacy;
+
+    function fn_set_event()
+    {
+      formatUtil = echarts.format;
+
+      //alert("fn_set_event");
+      //drawChartSample();
+
+      drawChartLegacy();
+
+      $('#btnExpand').click(function(){
+        showTableUsageDivTop10();
+        myChartLegacy.resize();
+      });
+
+      $('#btnCollapse').click(function(){
+        hideTableUsageDivTop10();
+        myChartLegacy.resize();
+      });
+
+      //initEcharts(echarts);
+
+      //drawChartDw();
+
+      //convertData(rawData, data, '');
+    }
+
+    function drawTreemapChart(pChartData, pChartName)
+    {
+      chartDomLegacy = document.getElementById(pChartName);
+      myChartLegacy = echarts.init(chartDomLegacy);
+      myChartLegacy.showLoading();
+      myChartLegacy.hideLoading();
+      
+      var option;
+      option = {
+              title: {
+                //text: 'ECharts Options',
+                //subtext: '2016/04',
+                //left: 'leafDepth'
+              },            
+              tooltip: {
+                trigger: 'item',
+                //triggerOn: 'mousemove'
+
+                  formatter: function (info) {
+                      var value = info.value;
+                      var treePathInfo = info.treePathInfo;
+                      var treePath = [];
+                      var tablePctVal = 0;
+                      var tableTotCntVal = 0;
+                      var subjName = '';
+                      //alert(JSON.stringify(info));
+                      //console.log(JSON.stringify(info));
+                      tableTotCntVal = treePathInfo[0].value;
+
+                      for (var i = 1; i < treePathInfo.length; i++) {
+                          treePath.push(treePathInfo[i].name);
+                      }
+
+                      if (treePathInfo.length == 2) {
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      }
+
+                      if (treePathInfo.length == 3) {
+                        tableTotCntVal = treePathInfo[1].value;
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      } else {
+                        return [
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          '' + value + '',
+                        ].join('');
+                      }
+
+                      if ( treePathInfo.length == 3 ) {
+                        console.log('1:'+ JSON.stringify(treePathInfo[1]));
+                        console.log('2:'+ JSON.stringify(treePathInfo[2]));
+                        tablePctVal = treePathInfo[2].value / treePathInfo[1].value * 100;
+//                        tablePctVal = Math.ceil(tablePctVal / 10) * 10;
+                        subjName = treePathInfo[2].value + '/' + treePathInfo[1].value;
+                      }                      
+
+                  }
+
+              },
+              series: [
+                          {
+                            name: '기간계',
+                            type: 'treemap',
+                            data: pChartData.children,
+                            visibleMin: 300,
+                            //width: '95%', height: '95%',
+                            width: '100%', height: '100%',
+                            //data: data.children,
+                            leafDepth: 1,
+                            label: {
+                              show: true,
+                              formatter: function (params) {
+
+                                if (params.treePathInfo.length == 2) {
+                                  //return '{${params.name}}'
+                                }
+                                var totSize=  params.treePathInfo[0].value;
+                                var size=(params.value/totSize)*100;
+                                if (size>8) {
+                                  return '{lg|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + 2 + '}';
+                                }
+                                if (size>2) {
+                                  return '{md|'+params.name+'}';
+                                }
+                                return '{sm|'+params.name+'}';
+                              },
+                              rich: {
+                                lg: { fontSize: 20, },
+                                lgRed: { fontSize: 20, color: '#f00'},                                
+                                md: { fontSize: 15, },
+                                mdRed: { fontSize: 15, color: '#f00'},
+                                sm: { fontSize: 10, }
+                              }
+                            },
+                            levels: [
+                                      {
+                                        itemStyle: {
+                                          borderColor: '#DDDDDD', 
+                                          //borderColor: '#555', 
+                                          borderWidth: 4,
+                                          gapWidth: 4
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.6],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.7,
+                                          gapWidth: 2,
+                                          borderWidth: 2
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.6,
+                                          gapWidth: 1
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5]
+                                      }
+                                    ]
+                          }
+                      ]
+               };
+      
+      myChartLegacy.setOption(option); // 차트 디스플레이
+      window.addEventListener('resize', myChartLegacy.resize);      
+      myChartLegacy.on('click', function(params) {
+        // Print name in console
+        console.log(params.name);
+        console.log(params.dataIndex);
+        console.log(params.data);
+        console.log(JSON.stringify(params.data));
+        //hideTableUsageDivTop10();
+        //return;
+
+        console.log( "params.treePathInfo.length : " + params.treePathInfo.length );
+
+        if ( params.treePathInfo.length == 3 ) {
+          showTableUsageDivTop10();
+        } 
+        else if ( params.treePathInfo.length == 1 || params.treePathInfo.length == 2)
+        {
+          hideTableUsageDivTop10();
+        }
+        return;
+
+      });
+    }
+
+    function getChartDataLegacy(){
+      var jsonVal = {
+            "계약(CT)": {
+              //"$count": 661,
+              "계약관리": {"$count": 357,"$bizname": "A01"},
+              "청약": {"$count": 304},
+              "UW": {"$count": 288},
+              "계약": {"$count": 307},
+              "입출금": {"$count": 178},
+              "안내증빙": {"$count": 45},
+              "출수재": {"$count": 137},
+              "대외연계": {"$count": 293},
+              "계약권한": {"$count": 27},
+              "보험수리": {"$count": 144},
+              "통계지표": {"$count": 139},
+              "방카슈랑스": {"$count": 56},
+              "TM": {"$count": 46},
+            },
+            "법인영업(CS)": {
+              //"$count": 295,              
+              "법인기업정보": {"$count": 62},
+              "법인영업활동": {"$count": 61},
+              "법인매출실적": {"$count": 109},
+              "방카제휴": {"$count": 63},
+            },
+            "준법감시(CP)": {
+              //"$count": 295,              
+              "내부통제": {"$count": 50},
+              "자금세탁": {"$count": 47},
+              "세무서관리": {"$count": 8},
+              "법률지식시스템": {"$count": 6},
+              "상시모니터링": {"$count": 61},
+              "정보보호": {"$count": 42},
+            },
+            "개인영업(PS)": {
+              //"$count": 295,              
+              "증원관리": {"$count": 91},
+              "영업조직": {"$count": 92},
+              "영업활동": {"$count": 355},
+              "영업매출": {"$count": 215},
+              "영업이관": {"$count": 11},
+              "영업소득": {"$count": 344},
+              "TC업무": {"$count": 103},
+              "GS": {"$count": 65},
+            }
+
+      }
+      return jsonVal;
+    }
+
+    const dataLegacy = {
+      children: []
+    };
+    const dataDw = {
+      children: []
+    };
+
+    function drawChartLegacy(){
+		  initChartLegacy();
+		  var chartData1 = getChartDataLegacy();
+		  var chartData = { children: [] };      
+      convertData(chartData1, chartData, '');
+      drawTreemapChart(chartData, 'chartLegacy');
+    }
+
+    function drawChartDw(){
+		  initChartDw();
+		  var chartData1 = getChartDataSample();
+		  var chartData = { children: [] };
+      convertData(chartData1, chartData, '');
+		  drawTreemapChart(chartData, 'chartDw');
+    }
+
+    function drawChartSample(){
+		  initChartDw();
+		  var chartData = getChartDataSample();
+		  drawChart(chartData);
+    }
+
+    function convertData(source, target, basePath) {
+    for (let key in source) {
+      let path = basePath ? basePath + '.' + key : key;
+      if (!key.match(/^\$/)) {
+        target.children = target.children || [];
+        const child = {
+          name: path
+        };
+        target.children.push(child);
+        convertData(source[key], child, path);
+      }
+    }
+    if (!target.children) {
+      target.value = source.$count || 1;
+      target.bizname = source.$bizname || 1;      
+    } else {
+      target.children.push({
+        name: basePath,
+        value: source.$count,
+        bizname: 'null'
+      });
+    }
+  }
+  
+    function getChartDataSample(){
+		var chartData1;
+
+		chartData1 = {"name": "비즈니스 아키텍쳐 샘플", 
+				      "children": 
+				    	  
+			    	  [{"name": "금융통계정보시스템", 
+			            "children" : 
+			        	    [{"name": "테마통계", 
+							  "children":
+								  [{"name": "금융통계월보",
+								    "children": 
+								    	[{"name": "손해보험통계",
+										  "children":
+											  [{"name":"손해보험회사 일반현황",
+												"children":
+													[{"name":"기본항목",
+													  "children":
+														  [{"name":"손해보험.회사수"},
+														   {"name":"손해보험.점포수"},
+														   {"name":"손해보험.임직원수"},
+														   {"name":"손해보험.대리점수"},
+														   {"name":"손해보험.설계사수.계"},
+														   {"name":"손해보험.설계사수.전속설계사"}
+														   ]}
+													]},
+											   {"name":"손해보험회사 주요경영지표"}
+											  ]},
+								         {"name": "은행통계", 
+										  "children":
+											  [{"name":"일반은행 은행계정 난외계정"},
+											   {"name":"일반은행 신탁계정 재무상태표"}
+											  ]} 
+										]}
+								  ]}
+			                ]}
+			    	  
+				          ]};
+		return chartData1.children[0];
+    }
+
+    var gInitialTreeDepth = -1;
+
+    //-------------------------------------------
+    function drawChart(pChartData) { 
+		console.log("drawChart");
+		//var myChart = echarts.init(document.getElementById('chart')); // echarts init 메소드로 id=chart인 DIV에 차트 초기화
+		
+		var chartDom = document.getElementById('chart01');
+		var myChart = echarts.init(chartDom);
+		myChart.showLoading();
+		myChart.hideLoading();
+		
+		var option;
+		option = {
+				  
+			      tooltip: {
+			        trigger: 'item',
+			        triggerOn: 'mousemove'
+			      },
+			      series: [
+			        {
+			          type: 'tree',
+			          data: [pChartData],
+			          top: '5%',
+			          left: '15%', // for tree root label space
+			          //left: '7%',
+			          bottom: '3%',
+			          right: '15%',
+                      //symbol: 'roundRect',
+			          symbolSize: 13,
+                      //itemStyle: {borderColor:'#EEEEEE'},
+                      //itemStyle: {color:'#E0E0E0'},
+//                      edgeShape: 'polyline',
+                      edgeShape: 'curve',
+                      edgeForkPosition: '80%', // 63%
+                      initialTreeDepth: gInitialTreeDepth, // -1
+                      itemStyle: {color:'#eaaf4c'}, //#ea634b // #FF2020 //eaaf4c
+                      lineStyle: {
+                        width: 2
+                      },                      
+                      label: {
+                          position: 'top',
+                          //position: 'left',
+                          verticalAlign: 'middle',
+                          align: 'right',
+                          //align: 'right',
+                          fontSize: 12
+                        },
+			          leaves: {
+			            label: {
+			              position: 'right',
+			              verticalAlign: 'middle',
+			              align: 'left'
+			            }
+			          },
+			          emphasis: {
+			            focus: 'descendant'
+			          },
+			          expandAndCollapse: true,
+			          animationDuration: 550,
+			          animationDurationUpdate: 750
+			        }
+			      ]
+			    };		
+		
+		myChart.setOption(option); // 차트 디스플레이
+	}
+
+    function initChart01(){
+      var chartDom = document.getElementById('chart01');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+
+    function initChartLegacy(){
+      var chartDom = document.getElementById('chartLegacy');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+    
+    function initChartDw(){
+      var chartDom = document.getElementById('chartDw');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }    
+
+    $(document).ready(function() {
+        //이벤트 설정
+        fn_set_event();
+        //fn_drawChartBizArchi();
+        //drawChartSample();
+    });
+    function hideTableUsageDivTop10(){
+      $("#tableUsageTop10").css("display","none");  // 속성값 : none, block
+    }
+    function showTableUsageDivTop10(){
+      $("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+    }
+    function showTableUsageOffCanvasTop10(){
+      // 버튼 요소 찾기
+      var button = document.getElementById("showTableUsageTop10");
+      // 버튼 클릭 이벤트 발생
+      //button.click();
+
+      $("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+    }
+
+    </script>
+</body>    
+
+</head>
+</body>
+</html>

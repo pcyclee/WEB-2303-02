@@ -1,0 +1,37 @@
+https://www.yalco.kr/lectures/html-css/
+
+ctrl + ,
+tab size => 2
+word wrap => on 
+
+extension
+
+material icon theme
+one dark pro
+indent-rainbow
+Live server
+bracket pair active
+auto rename tag 
+
+-- html 테스트 환경
+jsfiddle
+codepen
+https://html-css-js.com/
+
+
+
+https://docs.emmet.io/cheat-sheet/
+
+developer.mozilla.org
+
+주석 ctrl + /
+
+css div mdn
+
+https://dev.w3.org/html5/html-author/charref
+https://html.spec.whatwg.org/multipage/named-characters.html
+
+
+dl dt dd
+
+https://showcase.yalco.kr/html-css/01-04/05.css

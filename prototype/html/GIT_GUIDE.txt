@@ -1,0 +1,121 @@
+
+# git config --list
+q 나가기
+
+# git config --global -e
+
+# git config --global core.editor "code"
+
+
+# git config --global user.name "yclee네임"
+# git config --global user.email "이메일"
+
+확인
+# git config user.email
+# git config user.name
+
+# git config --global core.autocrlf true  (windows)
+# git config --global core.autocrlf input (mac)
+
+----- git documentation reference 참조
+
+# git commit -option
+# git add -option
+
+----- git 초기화
+
+# git init 
+
+
+----- git alias
+# git config --global alias.st status
+
+-----  요약된 설명 short
+# git status -s
+
+-----
+
+# git add *.txt
+# git rm --cached *.txt (to unstaged)
+
+
+------ git 용어설명
+working directory
+staging area
+.git directory -> history
+
+untracked
+tracked - unmoified / modified
+
+
+
+git diff
+
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+
+1.
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:pcyclee/gittest-2023-02.git
+git push -u origin main
+
+
+git remote add origin https://github.com/pcyclee/gittest-2023-02.git
+
+https://github.com/pcyclee/gittest-2023-02.git
+
+https://github.com/pcyclee/gittest-2023-02.git
+
+git config --global user.name "youngchan7078"
+git config --global user.email "pcyclee@naver.com"
+
+2. git clone
+
+git clone https://github.com/pcyclee/WEB-2303-02.git gittest-2023-02
+
+
+git clone https://github.com/pcyclee/gittest-2023-02.git gittest-2023-02
+git add .
+git commit -m "first commit"
+git commit -m "test commit"
+git branch -M feature/youngchan7078
+
+3. 브랜치 만들기
+git branch feature/youngchan7078
+
+3.1 브랜치 전환
+git checkout main
+git checkout feature/youngchan7078
+git checkout -b feature/youngchan7078
+
+--
+git branch -a 모든 브랜치 보기
+git branch -r 리모트 브랜치 보기
+
+git checkout -t origin/feature/youngchan7078 해당 브랜치 가져오기
+
+git add .
+git remove .
+git remove branch2.txt
+
+--- git 
+git commit -m "branch commit"
+git push -u origin feature/youngchan7078
+
+4. PULL
+
+git pull origin main
+git pull origin feature/youngchan7078
+
+
+
+
+
+
+
