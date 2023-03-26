@@ -10,6 +10,10 @@ q 나가기
 # git config --global user.name "yclee네임"
 # git config --global user.email "이메일"
 
+# git config --global user.name "youngchan7078"
+# git config --global user.email "pcyclee@naver.com"
+
+
 확인
 # git config user.email
 # git config user.name
@@ -63,7 +67,10 @@ git add README.md
 git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:pcyclee/gittest-2023-02.git
+git remote add origin git@github.com:pcyclee/WEB-2303-02.git
 git push -u origin main
+
+git push origin feature/youngchan7078
 
 
 git remote add origin https://github.com/pcyclee/gittest-2023-02.git
