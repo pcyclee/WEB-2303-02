@@ -75,7 +75,7 @@
           </div>
         </div>
         <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
-        <div id="tableUsageTop10" class="p-2" style="display:none; width: 240px; background-color: gray;">Flex item 3</div>
+        <div id="tableUsageTop10" class="p-2 d-none" style="width: 240px; background-color: gray;">Flex item 3</div>
       </div>
       <!--div class="container">
         <div class="row d-flow d-flex">
@@ -107,8 +107,8 @@ TABLE 정보
   <div align="right" class="mb-2">
     <span style="color: red; font-size: 12px;">용량(MB)/건수는 데이터 기준일 기반으로 수정되어 있습니다.</span>
     <button type="button" class="btn btn-secondary btn-sm">최근 생성일순 정렬</button>
-    <button id="btnExpand" type="button" class="btn btn-secondary btn-sm">+펼치기</button>
-    <button id="btnCollapse" type="button" class="btn btn-secondary btn-sm justify-content-end">-펼치기</button>
+    <button id="btnExpand" type="button" class="btn btn-secondary btn-sm d-none">+펼치기</button>
+    <button id="btnCollapse" type="button" class="btn btn-secondary btn-sm">-펼치기</button>
   </div>
 
   <div class="col-12">
@@ -163,7 +163,7 @@ TABLE 정보
 </div>
 <!-- offcanvas -->
 
-<button style="display: none;" id="showTableUsageTop10" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
+<button id="showTableUsageTop10" class="d-none btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
 
 <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
@@ -242,12 +242,16 @@ TABLE 정보
 
       $('#btnExpand').click(function(){
         showTableUsageDivTop10();
-        myChartLegacy.resize();
+        document.getElementById('btnExpand').classList.add('d-none');
+        document.getElementById('btnCollapse').classList.remove('d-none');
+        //myChartLegacy.resize();
       });
 
       $('#btnCollapse').click(function(){
         hideTableUsageDivTop10();
-        myChartLegacy.resize();
+        document.getElementById('btnCollapse').classList.add('d-none');
+        document.getElementById('btnExpand').classList.remove('d-none');
+        //myChartLegacy.resize();
       });
 
       //initEcharts(echarts);
@@ -661,12 +665,16 @@ TABLE 정보
         //fn_drawChartBizArchi();
         //drawChartSample();
     });
+
     function hideTableUsageDivTop10(){
-      $("#tableUsageTop10").css("display","none");  // 속성값 : none, block
+      //$("#tableUsageTop10").css("display","none");  // 속성값 : none, block
+      document.getElementById('tableUsageTop10').classList.add('d-none');
     }
     function showTableUsageDivTop10(){
-      $("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+      //$("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+      document.getElementById('tableUsageTop10').classList.remove('d-none');
     }
+
     function showTableUsageOffCanvasTop10(){
       // 버튼 요소 찾기
       var button = document.getElementById("showTableUsageTop10");

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" -->
+    <link href="ui/bootstrap-5.3.0/css/main.css" rel="stylesheet" >	
+
+    <link href="ui/jqGrid/css/ui.jqgrid.min.css"                 media="all" rel="stylesheet" type="text/css" />    
+    <link href="ui/jqGrid/plugins/css/ui.multiselect.min.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+    <!-- Icons css yclee 2022-10-25 -->
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+    <!-- <link href="ui/jqGrid/css/ui.jqgrid.min.css"                 media="all" rel="stylesheet" type="text/css" />     -->
+
+     <!-- <link href="ui/jquery-ui-1.12.1/jquery-ui.theme.min.css"                 media="all" rel="stylesheet" type="text/css" />         -->
+     <link href="ui/jquery-ui-1.12.1/jquery-ui.min.css"                 media="all" rel="stylesheet" type="text/css" />        
+
+     <!-- <link href="ui/jqGrid-4.7.0/css/ui.jqgrid.css"                 media="all" rel="stylesheet" type="text/css" />         
+     <link href="ui/jqGrid-4.7.0/css/ui.jqgrid-bootstrap5.css"                 media="all" rel="stylesheet" type="text/css" />         -->
+
+    <link href="ui/dp/css/layout.css"                 media="all" rel="stylesheet" type="text/css" />        
+    <link href="ui/dp/css/bootstrap-overwrite.css"                 media="all" rel="stylesheet" type="text/css" />        
+
+</head>
+
+<body>
+<!-- html contents START -->
+
+<div class="container mt-4">
+  <!-- 탭 메뉴 -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">기간계</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">정보계</a>
+    </li>
+  </ul>
+
+  <!-- 탭 내용 -->
+  <div class="tab-content mt-4">
+    <!-- tab1 -->
+    <div class="tab-pane fade show active" id="tab1" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+
+      <!-- 기간계 첫번째 탭 내용 -->
+      <div class="d-flex flex-row mb-3">
+        <div class="p-2" style="width: 300px; background-color: #DEEBF7;">
+          <!-- LEFT AERA - TABLE COUNT ////////////////////-->
+          <div class="ps-3 pe-3 pt-3 pb-3 " style="background-color: #DEEBF7; height: 400px; width: 240px; float: left; position: relative;">
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+              <span style="font-weight: bold; font-size: 14px">전체테이블수</span>
+            </div>
+
+            <div align="center" class="pt-2 pb-3">
+              <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
+                8,472
+                <span style="color: red; font-size: 10px;">▲3</span>
+              </span>
+            </div>
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>                  
+              <span style="font-weight: bold; font-size: 14px">최근 신규 테이블(2주)</span>
+            </div>
+            <div align="left" class="pt-2">
+              <ul style="padding-left: 10px">
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">방카슈랑스고객정보</li>
+                <li class="pb-1" style="list-style-type: none; font-weight: bold; font-size: 12px;">장기보험요율정보</li>
+              </ul>
+            </div>
+          </div>        
+          <!-- LEFT AERA - TABLE COUNT ////////////////////-->
+        </div>
+      <div class="p-2" style="width: 80%; min-width: 100px; background-color: #DEEBF7;">
+        <!-- 레거시 차트 영역 -->
+        <div class="" id="chartLegacy" style="height: 100%; overflow: hidden;">
+        </div>
+      </div>
+        <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
+      <div id="tableUsageTop10" class="p-2 d-none" style="width: 350px; background-color: white;">
+        <div class="border-bottom">
+          <span style="font-weight: bold; font-size: 14px">테이블 활용현황 Top10 - </span>
+          <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+        </div>
+        <div id="tableUsageTop10Div">
+          <table id="tableUsageTop10Grid"></table>
+          <!-- <div id="tableUsageTop10GridPager"></div> -->
+        </div>
+      </div>
+      </div>
+                    
+      <!--
+      TABLE 정보 시작
+      -->       
+      <div class="row" id="bottomDivRow1">
+
+        <div align="right" class="mb-2 mt-2">
+          <span style="font-weight: bold; font-size: 20px; float: left">계약관리</span>
+          <span style="color: red; font-size: 12px;">* 용량(MB)/건수는 데이터 기준일 기반으로 수정되어 표시됩니다.</span>
+          <button id="btnSortByCreatedDate1" type="button" class="btn btn-secondary btn-sm">최근 생성일순 정렬</button>
+          <button id="btnExpand1" type="button"   class="btn btn-secondary btn-sm">+펼치기</button>
+          <button id="btnCollapse1" type="button" class="btn btn-secondary btn-sm d-none">-줄이기</button>
+        </div>
+
+        <div id="bottomData1" class="col-12" style="height: 350px; overflow-y:scroll;">
+
+          <div id="tableList1Div">
+            <table id="tableList1Grid"></table>
+            <div id="tableList1GridPager"></div>
+          </div>
+   
+        </div>
+      </div>
+      <!--
+      TABLE 정보 끝
+      -->       
+    </div>
+      <!-- 기간계 첫번째 탭 내용 -->
+
+    <!-- tab2 -->    
+    <div class="tab-pane fade" id="tab2" style="width: 100%; height:350px; background-color: white;" role="tabpanel">
+      
+      <!-- <div id="chartDw" style="width: 100%; height:100%; background-color: bisque;"></div> -->
+      <!-- 기간계 두번째 탭 내용 -->
+      <!------------------------------------------------------------------------------------------------------------>
+      <div class="d-flex flex-row mb-3">
+
+        <div class="p-2" style="width: 300px; background-color: #DEEBF7;">
+          <!-- LEFT AERA - TABLE COUNT ////////////////////-->
+          <div class="ps-3 pe-3 pt-3 pb-3 " style="background-color: #DEEBF7; height: 400px; width: 240px; float: left; position: relative;">
+
+            <div align="left" class="mt-1">
+              <span style="font-weight: bold; font-size: 14px; color:blue;">></span>
+              <span style="font-weight: bold; font-size: 14px">전체테이블수</span>
+            </div>
+
+            <div align="center" class="pt-2 pb-3">
+              <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
+                8,472
+                <hr>
+                <span style="color: red; font-size: 10px;">일 ▲3</span>
+                <span style="color: red; font-size: 10px;">주 ▲3</span>
+                <span style="color: red; font-size: 10px;">월 ▲3</span>
+              </span>
+            </div>
+
+          </div>        
+          <!-- LEFT AERA - TABLE COUNT ////////////////////-->          
+        </div>
+
+        <div class="p-2" style="width: 80%; min-width: 100px; background-color: red;"> <!--#DEEBF7;-->
+          <!-- DW 차트 영역 -->
+          <div class="" id="chartDw" style="height: 100%; overflow: hidden;">
+          </div>
+        </div>
+
+          <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
+        <div id="tableChangeBoard" class="p-2 " style="width: 350px; background-color: white;"> <!--d-none-->
+          <div class="border-bottom">
+            <span style="font-weight: bold; font-size: 14px">todo: calendar  </span>
+          </div>
+          <div id="tableChangeBoardDiv">금일, 금주, 금월 변경사항
+          </div>
+        </div>
+      </div>
+
+      <!--
+      TABLE 정보 시작
+      -->       
+      <div class="row" id="bottomDivRow2">
+
+        <div align="right" class="mb-2 mt-2">
+          <span style="font-weight: bold; font-size: 20px; float: left">전사공통(IF)</span>
+          <span style="color: red; font-size: 12px;">* 용량(MB)/건수는 데이터 기준일 기반으로 수정되어 표시됩니다.</span>
+          <button id="btnSortByCreatedDate2" type="button" class="btn btn-secondary btn-sm">최근 생성일순 정렬</button>
+          <button id="btnExpand2" type="button"   class="btn btn-secondary btn-sm">+펼치기</button>
+          <button id="btnCollapse2" type="button" class="btn btn-secondary btn-sm d-none">-줄이기</button>
+        </div>
+
+        <div id="bottomData2" class="col-12" style="height: 350px; overflow-y:scroll;">
+
+          <div id="tableList2Div">
+            <table id="tableList2Grid"></table>
+            <div id="tableList2GridPager"></div>
+          </div>
+
+        </div>
+
+      </div>
+      <!--
+      TABLE 정보 끝
+      -->
+
+      <!------------------------------------------------------------------------------------------------------------>
+      <!-- 기간계 두번째 탭 내용 -->
+    </div>
+  </div>
+</div>
+
+
+	    <!-- CHART AREA 
+      <div id="chart01" style="width: 90%; height:150px; background-color: bisque;"></div>
+      <div id="chartLegacy" style="width: 90%; height:350px; background-color: white;"></div>
+      <div id="chartDw" style="width: 90%; height:350px; background-color: bisque;"></div>
+-->
+
+<!-- html contents END -->
+
+    <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" ></script-->
+    <!--script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js" ></script-->
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.js" ></script>    
+
+    <script src="ui/jquery/jquery-3.5.1.js" ></script>
+    <script src="ui/apache-echart-5.4/echarts.min.js" ></script>
+
+    <script src="ui/jquery-ui-1.12.1/jquery-ui.min.js" ></script>
+
+    <script src="ui/jqGrid/jquery.jqgrid.min.js" ></script>
+    <script src="ui/jqGrid/i18n/grid.locale-kr.js" ></script>    
+
+<!-- 
+    <script src="ui/jqGrid-4.7.0/js/jquery.jqGrid.min.js" ></script>
+    <script src="ui/jqGrid-4.7.0/js/i18n/grid.locale-kr.js" ></script>
+-->
+    <script type="text/javascript">
+
+    var formatUtil;
+    var chartDomLegacy;
+    var myChartLegacy;
+
+    var chartDomDw;
+    var myChartDw;
+
+
+    function fn_set_event()
+    {
+      formatUtil = echarts.format;
+
+      //alert("fn_set_event");
+      //drawChartSample();
+
+      fn_setGrid();
+
+      drawChartLegacy();
+
+      // 기간계
+      $('#btnExpand1').click(function(){
+        //showTableUsageDivTop10();
+        document.getElementById('btnExpand1').classList.add('d-none');
+        document.getElementById('btnCollapse1').classList.remove('d-none');
+        //myChartLegacy.resize();
+
+        document.getElementById('bottomData1').style.height = '700px';
+
+      });
+
+      $('#btnCollapse1').click(function(){
+        //hideTableUsageDivTop10();
+        document.getElementById('btnCollapse1').classList.add('d-none');
+        document.getElementById('btnExpand1').classList.remove('d-none');
+        //myChartLegacy.resize();
+        document.getElementById('bottomData1').style.height = '350px';
+
+      });
+
+      // todo open
+      //drawChartDw();
+
+      // 정보계
+      $('#btnExpand2').click(function(){
+        //showTableUsageDivTop10();
+        document.getElementById('btnExpand2').classList.add('d-none');
+        document.getElementById('btnCollapse2').classList.remove('d-none');
+        //myChartLegacy.resize();
+
+        document.getElementById('bottomData2').style.height = '700px';
+
+      });
+
+      $('#btnCollapse2').click(function(){
+        //hideTableUsageDivTop10();
+        document.getElementById('btnCollapse2').classList.add('d-none');
+        document.getElementById('btnExpand2').classList.remove('d-none');
+        //myChartLegacy.resize();
+        document.getElementById('bottomData2').style.height = '350px';
+
+      });
+
+    
+
+      //initEcharts(echarts);
+
+      //drawChartDw();
+
+      //convertData(rawData, data, '');
+    }
+
+    /*
+    * 그리드 정의
+    */
+    function fn_setGrid() {
+      
+      $("#tableUsageTop10Grid").jqGrid({
+          datatype: "local",
+          height: '100%',	//그리드 높이 설정(px, %, auto)
+          colModel: [
+              { name:'RN'             , index:'RN' ,hidden:true, width:50   ,align:'center'  ,label:'순번 '},         
+              { name: "TABLE_NAME", index:"TABLE_NAME", label:'테이블명', width:100},
+              { name: "COL_NAME"  , index:"COL_NAME",   label:'컬럼명',   width:100},
+              { name: "HIT_COUNT" , index:"HIT_COUNT",  label:'활용건수', width:100, align:'right', 
+                formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
+          ],
+          data: [
+              { RN: 1, TABLE_NAME: "Angela", COL_NAME: "Merkel", HIT_COUNT: 1241},
+              { RN: 2, TABLE_NAME: "Vladimir", COL_NAME: "Putin", HIT_COUNT: 1241 },
+              { RN: 3, TABLE_NAME: "David", COL_NAME: "Cameron", HIT_COUNT: 1241 },
+              { RN: 4, TABLE_NAME: "Barack", COL_NAME: "Obama", HIT_COUNT: 1241 },
+              { RN: 5, TABLE_NAME: "François", COL_NAME: "Hollande", HIT_COUNT: 1241 },
+              { RN: 6, TABLE_NAME: "Angela", COL_NAME: "Merkel", HIT_COUNT: 1241},
+              { RN: 7, TABLE_NAME: "Vladimir", COL_NAME: "Putin", HIT_COUNT: 1241 },
+              { RN: 8, TABLE_NAME: "David", COL_NAME: "Cameron", HIT_COUNT: 1241 },
+              { RN: 9, TABLE_NAME: "Barack", COL_NAME: "Obama", HIT_COUNT: 1241 },
+              { RN: 10, TABLE_NAME: "François", COL_NAME: "Hollande", HIT_COUNT: 1241 }
+          ]
+      });
+
+
+      $('#tableList1Grid').jqGrid({
+        //url: "${pageContext.request.contextPath}/common/dq/select/DQ_DQI/selectDqProfileCodeSearch-grid.do",
+        //url: "${pageContext.request.contextPath}/common/dq/select/DQ_DQI/selectDqProfileCodeSearch-grid.do",
+        mtype: 'POST',
+        datatype: "local",	//그리드를 채우는 데이터 형식(json, jsonstring..)
+        colModel: [			//그리드 Body에 보여질 데이터 속성
+          //name:서버로부터 넘어오는 데이터명, index:정렬에 사용할 때 서버로 전송 시 넘어가는 데이터명
+                {name:'RN'             , index:'RN' ,hidden:true, width:50   ,align:'center'  ,label:'순번 '}         
+                ,{name:'TABLE_ENG_NM'      , index:'TABLE_ENG_NM'       ,width:200  ,align:'left'   ,label:'테이블명'}    
+                ,{name:'TABLE_NM'      , index:'TABLE_NM'       ,width:200  ,align:'left'   ,label:'테이블한글명'}    
+
+                ,{name:'TABLE_DESC'      , index:'TABLE_DESC'       ,width:200  ,align:'left'   ,label:'테이블설명'}    
+
+                ,{name:'DEPT_NM'         , index:'DEPT_NM'          ,width:150  ,align:'center'   ,label:'현업부서' }
+                ,{name:'STORAGE_MB'      , index:'STORAGE_MB'       ,width:90  ,align:'right'  ,label:'용량(MB)', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
+                ,{name:'ROW_CNT'         , index:'ROW_CNT'          ,width:90  ,align:'right' ,label:'건수', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
+                ,{name:'BASE_DATE'         , index:'BASE_DATE'          ,width:110  ,align:'center'  ,label:'데이터기준일'}
+        ],
+
+        data: [
+                { RN:1, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Angela", TABLE_DESC: "Merkel", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' },
+                { RN:2, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Vladimir", TABLE_DESC: "Putin", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' },
+                { RN:3, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "David", TABLE_DESC: "Cameron", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' },
+                { RN:4, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Barack", TABLE_DESC: "Obama", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' },
+                { RN:5, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "François", TABLE_DESC: "Hollande", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' }
+            ],
+
+        height: '350px',	//그리드 높이 설정(px, %, auto)
+        autowidth: true,	//그리드 상위 Element의 width로 자동 계산
+        shrinkToFit: true,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
+        //shrinkToFit: false,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
+        resizeStop: function() {
+            // 그리드 리사이즈 처리
+            //$("#tableList1Grid").jqGrid("setGridWidth", $('#bottomData1').width(), true);
+            //$('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+        },
+        loadComplete: function() {
+          if ( $('#bottomDivRow1').width() > 0 ) {
+  //          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+            $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
+          } 
+
+          if ( $('#bottomDivRow2').width() > 0 ) {
+  //          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+            $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
+          } 
+        },
+        rowNum: 200,	//한페이지에 보여질 데이터 수
+        rownumbers: false,	//줄번호를 자동으로 표시할지 여부
+        rowList: [10, 50, 100],	//표시되는 행의 수
+        multiselect: false, //체크박스 여부
+        pager: '#tableList1GridPager',	//페이징 엘리먼트 지정
+        viewrecords: true,
+        caption: "",	//그리드 상단 제목 정의
+        emptyrecords: "검색된 데이터가 없습니다.",	//데이터가 없는 경우 페이저 오른쪽에 표시할 문구(조건:viewrecords:true)
+        //ignoreCase: true,	//검색 및 정렬에서 대소문자 구분 여부
+        loadtext: "데이터를 검색 중입니다..",	//데이터 로딩 중 표시할 문구
+        sortable: true,	//그리드 열을 마우스로 드래그앤드롭으로 이동 가능
+        viewsortcols: [true, 'vertical', true]
+      });
+
+      $('#tableList2Grid').jqGrid({
+        //url: "${pageContext.request.contextPath}/common/dq/select/DQ_DQI/selectDqProfileCodeSearch-grid.do",
+        //url: "${pageContext.request.contextPath}/common/dq/select/DQ_DQI/selectDqProfileCodeSearch-grid.do",
+        mtype: 'POST',
+        datatype: "local",	//그리드를 채우는 데이터 형식(json, jsonstring..)
+        colModel: [			//그리드 Body에 보여질 데이터 속성
+          //name:서버로부터 넘어오는 데이터명, index:정렬에 사용할 때 서버로 전송 시 넘어가는 데이터명
+                {name:'RN'             , index:'RN' ,hidden:true, width:50   ,align:'center'  ,label:'순번 '}         
+                ,{name:'TABLE_ENG_NM'      , index:'TABLE_ENG_NM'       ,width:200  ,align:'left'   ,label:'테이블명'}    
+                ,{name:'TABLE_NM'      , index:'TABLE_NM'       ,width:200  ,align:'left'   ,label:'테이블한글명'}    
+
+                ,{name:'TABLE_DESC'      , index:'TABLE_DESC'       ,width:200  ,align:'left'   ,label:'테이블설명'}    
+
+                ,{name:'DEPT_NM'         , index:'DEPT_NM'          ,width:150  ,align:'center'   ,label:'현업부서' }
+                //,{name:'STORAGE_MB'      , index:'STORAGE_MB'       ,width:90  ,align:'right'  ,label:'용량(MB)', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
+                //,{name:'ROW_CNT'         , index:'ROW_CNT'          ,width:90  ,align:'right' ,label:'건수', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
+                ,{name:'BASE_DATE'       , index:'BASE_DATE'        ,width:110  ,align:'center'  ,label:'데이터기준일'}
+        ],
+
+        data: [
+                { RN:1, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Angela", TABLE_DESC: "Merkel", DEPT_NM: "부서1", BASE_DATE:'2023-03-27' },
+                { RN:2, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Vladimir", TABLE_DESC: "Putin", DEPT_NM: "부서1", BASE_DATE:'2023-03-27' },
+                { RN:3, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "David", TABLE_DESC: "Cameron", DEPT_NM: "부서1",  BASE_DATE:'2023-03-27' },
+                { RN:4, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "Barack", TABLE_DESC: "Obama", DEPT_NM: "부서1",  BASE_DATE:'2023-03-27' },
+                { RN:5, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "François", TABLE_DESC: "Hollande", DEPT_NM: "부서1", BASE_DATE:'2023-03-27' }
+        ],
+
+        height: '350px',	//그리드 높이 설정(px, %, auto)
+        autowidth: true,	//그리드 상위 Element의 width로 자동 계산
+        shrinkToFit: true,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
+        //shrinkToFit: true,
+        // 그리드가 리사이즈될 때 호출할 함수
+        resizeStop: function() {
+            // 그리드 리사이즈 처리
+            //$("#tableList2Grid").jqGrid("setGridWidth", $('#bottomData2').width(), true);
+            //$('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+        },
+        loadComplete: function() {
+            // 그리드 리사이즈 처리
+            //$("#tableList2Grid").jqGrid("setGridWidth", $('#bottomData2').width(), true);
+            //$('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+
+          if ( $('#bottomDivRow1').width() > 0 ) {
+  //          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+            $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
+          } 
+
+          if ( $('#bottomDivRow2').width() > 0 ) {
+  //          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+            $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
+          } 
+
+        },
+
+        rowNum: 10,	//한페이지에 보여질 데이터 수
+        rownumbers: false,	//줄번호를 자동으로 표시할지 여부
+        rowList: [10, 50, 100],	//표시되는 행의 수
+        multiselect: false, //체크박스 여부
+        pager: '#tableList2GridPager',	//페이징 엘리먼트 지정
+        viewrecords: true,
+        caption: "",	//그리드 상단 제목 정의
+        emptyrecords: "검색된 데이터가 없습니다.",	//데이터가 없는 경우 페이저 오른쪽에 표시할 문구(조건:viewrecords:true)
+        //ignoreCase: true,	//검색 및 정렬에서 대소문자 구분 여부
+        loadtext: "데이터를 검색 중입니다..",	//데이터 로딩 중 표시할 문구
+        sortable: true,	//그리드 열을 마우스로 드래그앤드롭으로 이동 가능
+        viewsortcols: [true, 'vertical', true]
+      });
+
+      //화면 크기 조절
+      // $(window).bind('resize', function() {
+      //   //$('#tableList1Grid').setGridWidth($('#tableList1Div').width(), true);
+      //   //$('#tableList2Grid').setGridWidth($('#bottomData1').width(), true);
+      //   $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+      //   $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+        
+      // }).trigger('resize');
+
+      window.addEventListener('resize', function(){
+        //alert("$('#bottomDivRow1').width() : " + $('#bottomDivRow1').width() );
+        //alert("$('#bottomDivRow2').width() : " + $('#bottomDivRow2').width() );
+        if ( $('#bottomDivRow1').width() > 0 ) {
+          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+          $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
+        } 
+
+        if ( $('#bottomDivRow2').width() > 0 ) {
+          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+          $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
+        } 
+
+      });      
+
+      // $('#tableList2Div').bind('resize', function() {
+      //   $('#tableList1Grid').setGridWidth($('#tableList1Div').width(), true);
+      //   $('#tableList2Grid').setGridWidth($('#tableList2Div').width(), true);
+      // }).trigger('resize');
+
+      
+    }
+
+    function drawTreemapChartLegacy(pChartData, pChartName)
+    {
+      chartDomLegacy = document.getElementById(pChartName);
+      myChartLegacy = echarts.init(chartDomLegacy);
+      myChartLegacy.showLoading();
+      myChartLegacy.hideLoading();
+      
+      var option;
+      option = {
+              title: {
+                //text: 'ECharts Options',
+                //subtext: '2016/04',
+                //left: 'leafDepth'
+              },            
+              tooltip: {
+                trigger: 'item',
+                //triggerOn: 'mousemove'
+
+                  formatter: function (info) {
+                      var value = info.value;
+                      var treePathInfo = info.treePathInfo;
+                      var treePath = [];
+                      var tablePctVal = 0;
+                      var tableTotCntVal = 0;
+                      var subjName = '';
+                      //alert(JSON.stringify(info));
+                      //console.log(JSON.stringify(info));
+                      tableTotCntVal = treePathInfo[0].value;
+
+                      for (var i = 1; i < treePathInfo.length; i++) {
+                          treePath.push(treePathInfo[i].name);
+                      }
+
+                      if (treePathInfo.length == 2) {
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      }
+
+                      if (treePathInfo.length == 3) {
+                        tableTotCntVal = treePathInfo[1].value;
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      } else {
+                        return [
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          '' + value + '',
+                        ].join('');
+                      }
+
+                      if ( treePathInfo.length == 3 ) {
+                        console.log('1:'+ JSON.stringify(treePathInfo[1]));
+                        console.log('2:'+ JSON.stringify(treePathInfo[2]));
+                        tablePctVal = treePathInfo[2].value / treePathInfo[1].value * 100;
+//                        tablePctVal = Math.ceil(tablePctVal / 10) * 10;
+                        subjName = treePathInfo[2].value + '/' + treePathInfo[1].value;
+                      }                      
+
+                  }
+
+              },
+              series: [
+                          {
+                            name: '기간계',
+                            type: 'treemap',
+                            data: pChartData.children,
+                            visibleMin: 300,
+                            //width: '95%', height: '95%',
+                            width: '100%', height: '100%',
+                            //data: data.children,
+                            leafDepth: 1,
+                            label: {
+                              show: true,
+                              formatter: function (params) {
+
+                                if (params.treePathInfo.length == 2) {
+                                  //return '{${params.name}}'
+                                }
+                                var totSize=  params.treePathInfo[0].value;
+                                var size=(params.value/totSize)*100;
+                                if (size>8) {
+                                  return '{lg|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + 2 + '}';
+                                }
+                                if (size>2) {
+                                  return '{md|'+params.name+'}';
+                                }
+                                return '{sm|'+params.name+'}';
+                              },
+                              rich: {
+                                lg: { fontSize: 20, },
+                                lgRed: { fontSize: 20, color: '#f00'},                                
+                                md: { fontSize: 15, },
+                                mdRed: { fontSize: 15, color: '#f00'},
+                                sm: { fontSize: 10, }
+                              }
+                            },
+                            levels: [
+                                      {
+                                        itemStyle: {
+                                          borderColor: '#DDDDDD', 
+                                          //borderColor: '#555', 
+                                          borderWidth: 4,
+                                          gapWidth: 4
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.6],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.7,
+                                          gapWidth: 2,
+                                          borderWidth: 2
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.6,
+                                          gapWidth: 1
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5]
+                                      }
+                                    ]
+                          }
+                      ]
+               };
+      
+      myChartLegacy.setOption(option); // 차트 디스플레이
+      window.addEventListener('resize', myChartLegacy.resize);      
+      myChartLegacy.on('click', function(params) {
+        // Print name in console
+        console.log(params.name);
+        console.log(params.dataIndex);
+        console.log(params.data);
+        console.log(JSON.stringify(params.data));
+        //hideTableUsageDivTop10();
+        //return;
+
+        console.log( "params.treePathInfo.length : " + params.treePathInfo.length );
+
+        if ( params.treePathInfo.length == 3 ) {
+          showTableUsageDivTop10();
+        } 
+        else if ( params.treePathInfo.length == 1 || params.treePathInfo.length == 2)
+        {
+          hideTableUsageDivTop10();
+        }
+        return;
+
+      });
+    }
+
+    function getChartDataLegacy(){
+      var jsonVal = {
+            "계약(CT)": {
+              //"$count": 661,
+              "계약관리": {"$count": 357,"$bizname": "A01"},
+              "청약": {"$count": 304},
+              "UW": {"$count": 288},
+              "계약": {"$count": 307},
+              "입출금": {"$count": 178},
+              "안내증빙": {"$count": 45},
+              "출수재": {"$count": 137},
+              "대외연계": {"$count": 293},
+              "계약권한": {"$count": 27},
+              "보험수리": {"$count": 144},
+              "통계지표": {"$count": 139},
+              "방카슈랑스": {"$count": 56},
+              "TM": {"$count": 46},
+            },
+            "법인영업(CS)": {
+              //"$count": 295,              
+              "법인기업정보": {"$count": 62},
+              "법인영업활동": {"$count": 61},
+              "법인매출실적": {"$count": 109},
+              "방카제휴": {"$count": 63},
+            },
+            "준법감시(CP)": {
+              //"$count": 295,              
+              "내부통제": {"$count": 50},
+              "자금세탁": {"$count": 47},
+              "세무서관리": {"$count": 8},
+              "법률지식시스템": {"$count": 6},
+              "상시모니터링": {"$count": 61},
+              "정보보호": {"$count": 42},
+            },
+            "개인영업(PS)": {
+              //"$count": 295,              
+              "증원관리": {"$count": 91},
+              "영업조직": {"$count": 92},
+              "영업활동": {"$count": 355},
+              "영업매출": {"$count": 215},
+              "영업이관": {"$count": 11},
+              "영업소득": {"$count": 344},
+              "TC업무": {"$count": 103},
+              "GS": {"$count": 65},
+            }
+      }
+      return jsonVal;
+    }
+
+    function getChartDataDw(){
+      var jsonVal = {
+            "계약(CT)": {
+              //"$count": 661,
+              "계약관리": {"$count": 357,"$bizname": "A01"},
+              "청약": {"$count": 304},
+              "UW": {"$count": 288},
+              "계약": {"$count": 307},
+              "입출금": {"$count": 178},
+              "안내증빙": {"$count": 45},
+              "출수재": {"$count": 137},
+              "대외연계": {"$count": 293},
+              "계약권한": {"$count": 27},
+              "보험수리": {"$count": 144},
+              "통계지표": {"$count": 139},
+              "방카슈랑스": {"$count": 56},
+              "TM": {"$count": 46},
+            },
+            "법인영업(CS)": {
+              //"$count": 295,              
+              "법인기업정보": {"$count": 62},
+              "법인영업활동": {"$count": 61},
+              "법인매출실적": {"$count": 109},
+              "방카제휴": {"$count": 63},
+            },
+            "준법감시(CP)": {
+              //"$count": 295,              
+              "내부통제": {"$count": 50},
+              "자금세탁": {"$count": 47},
+              "세무서관리": {"$count": 8},
+              "법률지식시스템": {"$count": 6},
+              "상시모니터링": {"$count": 61},
+              "정보보호": {"$count": 42},
+            },
+            "개인영업(PS)": {
+              //"$count": 295,              
+              "증원관리": {"$count": 91},
+              "영업조직": {"$count": 92},
+              "영업활동": {"$count": 355},
+              "영업매출": {"$count": 215},
+              "영업이관": {"$count": 11},
+              "영업소득": {"$count": 344},
+              "TC업무": {"$count": 103},
+              "GS": {"$count": 65},
+            }
+      }
+      return jsonVal;
+    }
+
+    const dataLegacy = {
+      children: []
+    };
+    const dataDw = {
+      children: []
+    };
+
+    function drawChartLegacy(){
+		  initChartLegacy();
+		  var chartData1 = getChartDataLegacy();
+		  var chartData = { children: [] };      
+      convertData(chartData1, chartData, '');
+      drawTreemapChartLegacy(chartData, 'chartLegacy');
+    }
+
+    function drawChartDw(){
+		  initChartDw();
+		  var chartData1 = getChartDataDw();
+		  var chartData = { children: [] };
+      convertData(chartData1, chartData, '');
+		  drawTreemapChartLegacy(chartData, 'chartDw');
+    }
+
+    function convertData(source, target, basePath) {
+    for (let key in source) {
+      let path = basePath ? basePath + '.' + key : key;
+      if (!key.match(/^\$/)) {
+        target.children = target.children || [];
+        const child = {
+          name: path
+        };
+        target.children.push(child);
+        convertData(source[key], child, path);
+      }
+    }
+    if (!target.children) {
+      target.value = source.$count || 1;
+      target.bizname = source.$bizname || 1;      
+    } else {
+      target.children.push({
+        name: basePath,
+        value: source.$count,
+        bizname: 'null'
+      });
+    }
+  }
+  
+
+    function initChartLegacy(){
+      var chartDom = document.getElementById('chartLegacy');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+    
+    function initChartDw(){
+      var chartDom = document.getElementById('chartDw');
+      var myChart = echarts.init(chartDom);
+      myChart.clear();
+    }
+
+    $(document).ready(function() {
+        //이벤트 설정
+        fn_set_event();
+        //fn_drawChartBizArchi();
+        //drawChartSample();
+    });
+
+    function hideTableUsageDivTop10(){
+      //$("#tableUsageTop10").css("display","none");  // 속성값 : none, block
+      document.getElementById('tableUsageTop10').classList.add('d-none');
+      setTimeout(function (){
+        myChartLegacy.resize();      
+      }, 50);
+
+    }
+    function showTableUsageDivTop10(){
+      //$("#tableUsageTop10").css("display","block");  // 속성값 : none, block
+      document.getElementById('tableUsageTop10').classList.remove('d-none');
+      //myChartLegacy.resize();            
+      setTimeout(function (){
+        //myChartLegacy.resize();      
+      }, 1000);
+    }
+
+    </script>
+</body>    
+
+</head>
+</body>
+</html>

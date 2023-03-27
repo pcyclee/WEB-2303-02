@@ -1,0 +1,291 @@
+.modal-dialog {
+	padding-top: 30px;
+}
+
+.modal-header {
+	padding: 10px 10px 10px 10px; 
+	color:#000; 
+	background-color: rgb(7,63,146);	/*rgb(25,155,176)*/
+}
+
+.modal-title {
+    color: white;
+    font-weight: bold;
+}
+.modal-body {
+	min-height: 300px;
+}
+
+.modal-body .panel {
+/* 	height: 500px; */
+/* 	overflow: auto; */
+}
+
+/*요청 화면 모달*/
+.lgModal .modal-dialog {
+	padding-top: 30px;
+	width: 1100px;
+}
+
+.lgModal .modal-body {
+    min-height: 600px;
+    min-width: 1100px;
+}
+
+.lgModal2 .modal-dialog {
+	padding-top: 30px;
+	width: 1300px;
+}
+
+.lgModal2 .modal-body {
+    min-height: 600px;
+    min-width: 1300px;
+}
+
+.llgModal .modal-dialog {
+	padding-top: 30px;
+	width: 1500px;
+}
+
+.llgModal .modal-body {
+    min-height: 600px;
+    min-width: 1500px;
+}
+
+.mdModal .modal-dialog {
+	padding-top: 30px;
+	width: 500px;
+}
+
+.mdModal .modal-body {
+    min-height: 680px;
+    min-width: 500px;
+}
+
+.wide-mdModal .modal-dialog {
+	padding-top: 150px;
+	width: 800px;
+}
+
+.wide-mdModal .modal-body {
+    min-height: 380px;
+    min-width: 800px;
+}
+
+.smModal .modal-dialog {
+	padding-top: 250px;
+}
+
+.smModal  .modal-body {
+	min-height: 120px;
+}
+
+#modalCode .modal-dialog {
+	padding-top: 30px;
+	width: 1100px;
+}
+
+#modalCode .modal-body {
+    min-height: 680px;
+    min-width: 1100px;
+}
+
+#modalReqCall .modal-dialog {
+	padding-top: 30px;
+	width: 1230px;
+}
+
+#modalReqCall .modal-body {
+    min-height: 680px;
+    min-width: 1230px;
+}
+
+#modalUserList .modal-dialog {
+	padding-top: 30px;
+	width: 550px;
+}
+
+#modalUserList .modal-body {
+    min-height: 680px;
+    min-width: 550px;
+}
+
+/*사용자 정보 모달*/
+.user-modal .modal-dialog {
+	padding-top: 150px;
+	width: 500px;
+}
+
+.user-modal .modal-body {
+    min-height: 300px;
+    min-width: 500px;
+}
+
+.strc-modal .modal-dialog {
+	padding-top: 30px;
+	width: 600px;
+}
+
+.strc-modal .modal-body {
+    min-height: 300px;
+    min-width: 600px;
+}
+
+.strc-modal .modal-body .panel {
+    height: 500px;
+    overflow: auto;
+}
+
+#modalPg .modal-backdrop.in {
+	opacity: 0;
+}
+#modalPg .modal-dialog {
+	padding-top: 250px;
+}
+#modalPg .modal-body {
+	min-height: 110px;
+}
+
+#modalPgBar .modal-backdrop.in {
+	opacity: 0;
+}
+#modalPgBar .modal-dialog {
+	padding-top: 250px;
+}
+#modalPgBar .modal-body {
+	min-height: 110px;
+}
+
+#modalAlert .modal-backdrop.in {
+	opacity: 0;
+}
+#modalAlert .modal-dialog {
+	padding-top: 250px;
+}
+#modalAlert .modal-body {
+	min-height: 110px;
+}
+#modalAfList .modal-dialog {
+	padding-top: 30px;
+	width: 800px;
+}
+#modalAfList .modal-body {
+	min-height: 400px;
+    min-width: 800px;
+}
+
+.iconblue {
+	color: #10a0e7;
+	cursor: pointer;
+}
+
+.wide-tab {
+	padding: 0;
+    padding-top: 10px;
+}
+
+/*그리드 헤더 조정*/
+.ui-jqgrid-labels {
+	height: 24px;
+    font-size: 12px;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr {
+    font-weight: bold;
+/*    background-color: #dafaf9;*/
+/*
+    background-color: rgb(230,230,230); gray
+    background-color: rgb(217,232,239); blue
+    background-color: rgb(206,214,236); navy
+    */
+/* 	background-color: rgb(217,232,239);     */
+}
+
+/*그룹헤더 바탕색상 변경*/
+.ui-jqgrid tr.jqgroup {
+    outline-style: none;
+    background: #bacbfe;
+}
+
+.modal-row {
+	padding-left: 10px;
+	padding-right: 12px;
+}
+
+.modal-body .panel {
+	margin-bottom: 0;
+}
+
+.modal-body .panel-body {
+	padding: 0;
+	overflow: auto;
+}
+
+.modal-body .panel .tab_container {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.modal-footer {
+	background-color: #ebf5f5;
+}
+
+.pt-board-table{padding:10px;}
+.pt-board-table{padding:0;}
+.pt-board-table table {border-collapse: collapse;border-spacing:0;width: 100%; margin-bottom: 0;}
+.pt-board-table table thead{border: 1px solid #ddd;}
+.pt-board-table table thead tr:last-child td{border-bottom: 1px solid #ddd;}
+.pt-board-table table thead tr td{border-bottom: 1px solid #ddd;}
+/* .pt-board .pt-board-table table thead tr td:nth-child(odd) {background-color: #f2f2f2;border-right:1px solid #ddd;} */
+.pt-board-table table thead tr td .flex-hori{display: flex;align-items: center;justify-content: flex-start;}
+.pt-board-table table thead tr td .flex-hori span{padding-left:10px;}
+.pt-board-table table thead tr td:nth-child(3){border-left:1px solid #ddd;}
+.pt-board-table table tbody{border: 1px solid #ddd; }
+.pt-board-table table th td {text-align: left;padding:10px;font-size:12px;color:#444}
+
+.pt-board-table table thead tr .td-title {
+	background-color: #f2f2f2;
+	border-right:1px solid #ddd;
+}
+
+.pt-table thead tr td {
+	padding: 8px;
+}
+
+.pt-table thead tr td input {
+	width: 100%;
+}
+
+.pt-table thead tr td textarea {
+	width: 100%;
+	resize: none;
+}
+
+.width100per {
+	width: 100%;
+}
+
+.td-center {
+	text-align: center;
+}
+
+.notStd-color {
+	background-color:#91d29f;
+	font-weight:bold;
+}
+
+.red-color {
+	color:red;
+	font-weight:bold;
+}
+
+.fail-color {
+	background-color:#feab9a;
+	font-weight:bold;
+}
+
+.non-color {
+	background-color:#f2e7a4;
+	font-weight:bold;
+}
