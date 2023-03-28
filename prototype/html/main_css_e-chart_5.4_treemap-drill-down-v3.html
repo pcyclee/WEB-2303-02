@@ -31,7 +31,6 @@
     <link href="ui/dp/css/layout.css"                 media="all" rel="stylesheet" type="text/css" />        
     <link href="ui/dp/css/bootstrap-overwrite.css"                 media="all" rel="stylesheet" type="text/css" />        
 
-
     <style>
       /* 테이블 컬럼명의 글자색 blue */
       div#jqgh_tableList1Grid_BASE_DATE {
@@ -290,16 +289,13 @@
 
     function fn_set_event()
     {
+      // 데이터 초기화
       setChartDataLegacy();
       setChartDataDw();
 
       //formatUtil = echarts.format;
-
       //alert("fn_set_event");
-      //drawChartSample();
-
       fn_setGrid();
-
       drawChartLegacy();
       drawChartDw();
 
@@ -348,7 +344,6 @@
       });
 
       $('#btnCollapse1').click(function(){
-        //hideTableUsageDivTop10();
         document.getElementById('btnCollapse1').classList.add('d-none');
         document.getElementById('btnExpand1').classList.remove('d-none');
         //myChartLegacy.resize();
@@ -364,16 +359,10 @@
 
       });
 
-      // todo open
-      //drawChartDw();
-
       // 정보계
       $('#btnExpand2').click(function(){
-        //showTableUsageDivTop10();
         document.getElementById('btnExpand2').classList.add('d-none');
         document.getElementById('btnCollapse2').classList.remove('d-none');
-        //myChartLegacy.resize();
-
         document.getElementById('bottomData2').style.height = '300px';
 
         var rowIds = $("#tableList2Grid").jqGrid("getDataIDs");
@@ -387,10 +376,8 @@
       });
 
       $('#btnCollapse2').click(function(){
-        //hideTableUsageDivTop10();
         document.getElementById('btnCollapse2').classList.add('d-none');
         document.getElementById('btnExpand2').classList.remove('d-none');
-        //myChartLegacy.resize();
         document.getElementById('bottomData2').style.height = '300px';
 
         var rowIds = $("#tableList2Grid").jqGrid("getDataIDs");
@@ -414,14 +401,9 @@
 
       document.getElementById('dwBaseDate').innerHTML = fn_getTodayStr();
 
-
-      //window.addEventListener('resize', fn_onChartResize);
-
-      //initEcharts(echarts);
-      //drawChartDw();
-      //convertData(rawData, data, '');
     }
 
+    // 미사용
     function fn_onChartResize() {
       //alert("resize");
       myChartLegacy.resize();
@@ -593,15 +575,8 @@
         //shrinkToFit: true,
         // 그리드가 리사이즈될 때 호출할 함수
         resizeStop: function() {
-            // 그리드 리사이즈 처리
-            //$("#tableList2Grid").jqGrid("setGridWidth", $('#bottomData2').width(), true);
-            //$('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
         },
         loadComplete: function() {
-            // 그리드 리사이즈 처리
-            //$("#tableList2Grid").jqGrid("setGridWidth", $('#bottomData2').width(), true);
-            //$('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
-
           if ( $('#bottomDivRow1').width() > 0 ) {
   //          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
             $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
@@ -786,15 +761,12 @@
                };
       
       myChartLegacy.setOption(option); // 차트 디스플레이
-      //////window.addEventListener('resize', myChartLegacy.resize);      
       myChartLegacy.on('click', function(params) {
         // Print name in console
         console.log(params.name);
         console.log(params.dataIndex);
         console.log(params.data);
         console.log(JSON.stringify(params.data));
-        //hideTableUsageDivTop10();
-        //return;
 
         console.log( "params.treePathInfo.length : " + params.treePathInfo.length );
 
