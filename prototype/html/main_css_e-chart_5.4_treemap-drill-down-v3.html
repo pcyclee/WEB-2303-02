@@ -150,8 +150,8 @@
               <span class="badge text-bg-light" style="font-weight: bold; padding: 15px 25px 15px 25px; font-size: 16px;">
                 8,472
                 <hr>
-                <span style="color: red; font-size: 10px;">일 ▲3</span>
-                <span style="color: red; font-size: 10px;">주 ▲3</span>
+                <span style="color: red; font-size: 10px; border-right: thin solid red;" class="pe-2">일 ▲3</span>
+                <span style="color: red; font-size: 10px; border-right: thin solid red;" class="pe-2">주 ▲3</span><vr>
                 <span style="color: red; font-size: 10px;">월 ▲3</span>
               </span>
             </div>
@@ -168,10 +168,39 @@
 
           <!--div class="p-2" style="display: none; width: 240px; background-color: gray;">Flex item 3</div-->
         <div id="tableChangeBoard" class="p-2 " style="width: 350px; background-color: white;"> <!--d-none-->
-          <div class="border-bottom">
-            <span style="font-weight: bold; font-size: 14px">todo: calendar  </span>
+          <div align="center" class="border-bottom mb-2 align-middle" 
+               style="height: 25px; padding-bottom: 2rem;">
+            <!-- <button id="btnTommorrow" type="button" class="btn btn-outline-dark btn-sm">&lt;</button> -->
+            <button id="btnDayMinus" type="button" 
+             class="align-middle" 
+             style="height: 25px; border-radius:0.2rem; vertical-align: middle; border: thin solid gray; background-color: white;">&lt;</button>
+            <span id="dwBaseDate" style="font-weight: bold; font-size: 14px;" class="p-1 align-middle">2023-03-01</span>
+            <!-- <button id="btnYesterday" type="button" class="btn btn-outline-dark btn-sm">&gt;</button> -->
+            <button id="btnDayPlus" type="button" 
+             class="align-middle" 
+             style="height: 25px; border-radius:0.2rem; vertical-align: middle; border: thin solid gray; background-color: white;">&gt;</button>
           </div>
-          <div id="tableChangeBoardDiv">금일, 금주, 금월 변경사항
+          <div id="tableChangeBoardTitleDiv" class="pt-2">
+            <div id="dwBizNameDiv" class="mb-2" align="center">
+              <span style="font-weight: bold; font-size: 14px;" class="m-2 align-middle">전사공통(IF)</span>
+            </div>
+          </div>
+          <div id="tableChangeBoardDiv" class="p-1">
+            <div id="byDay"   class="mb-2">
+              <span style="font-weight: bold; font-size: 14px; border-left: thin solid black; border-right: thin solid black;" 
+                    class="ps-2 pe-2 m-2 align-middle">금일</span>
+              <span style="font-weight: bold; font-size: 14px;" class="m-2 align-middle">2023-03-01</span>
+            </div>
+            <div id="byWeek"  class="mb-2">
+              <span style="font-weight: bold; font-size: 14px; border-left: thin solid black; border-right: thin solid black;" 
+                    class="ps-2 pe-2 m-2 align-middle">금주</span>
+              <span style="font-weight: bold; font-size: 14px;" class="m-2 align-middle">2023-03-01</span>
+            </div>
+            <div id="byMonth" class="mb-2">
+              <span style="font-weight: bold; font-size: 14px; border-left: thin solid black; border-right: thin solid black;" 
+                    class="ps-2 pe-2 m-2 align-middle">금월</span>
+              <span style="font-weight: bold; font-size: 14px;" class="m-2 align-middle">2023-03-01</span>
+            </div>
           </div>
         </div>
       </div>
@@ -244,6 +273,7 @@
     var myChartDw;
 
 
+
     function fn_set_event()
     {
       formatUtil = echarts.format;
@@ -298,13 +328,59 @@
 
       });
 
-    
+      $('#btnDayPlus').click(function(){
+        var todayStr = document.getElementById('dwBaseDate').innerHTML;
+        document.getElementById('dwBaseDate').innerHTML = fn_getDayPlusStr(todayStr);
+      });
+      $('#btnDayMinus').click(function(){
+        var todayStr = document.getElementById('dwBaseDate').innerHTML;
+        document.getElementById('dwBaseDate').innerHTML = fn_getDayMinusStr(todayStr);
+      });
+
+      document.getElementById('dwBaseDate').innerHTML = fn_getTodayStr();
 
       //initEcharts(echarts);
-
       //drawChartDw();
-
       //convertData(rawData, data, '');
+    }
+
+    function fn_getDayPlusStr(str) {
+      var date1  = new Date(str);
+      var tomorrow = new Date(str);
+      tomorrow.setDate(date1.getDate() + 1);
+
+      var year1  = tomorrow.getFullYear();
+      var month1 = tomorrow.getMonth() + 1;
+      var day1   = tomorrow.getDate();      
+      if ( month1 < 10 ) month1 = "0" + month1;
+      if ( day1 < 10 ) day1 = "0" + day1;
+      alert(year1 + "-" + month1 + "-" + day1);
+      return year1 + "-" + month1 + "-" + day1;
+    }
+
+    function fn_getDayMinusStr(str) {
+      var date1  = new Date(str);
+      var yesterday = new Date(str);
+      yesterday.setDate(date1.getDate() - 1);
+
+      var year1  = yesterday.getFullYear();
+      var month1 = yesterday.getMonth() + 1;
+      var day1   = yesterday.getDate();      
+      if ( month1 < 10 ) month1 = "0" + month1;
+      if ( day1 < 10 ) day1 = "0" + day1;
+      alert(year1 + "-" + month1 + "-" + day1);
+      return year1 + "-" + month1 + "-" + day1;
+    }
+
+    function fn_getTodayStr() {
+      var date1  = new Date();
+      var year1  = date1.getFullYear();
+      var month1 = date1.getMonth() + 1;
+      if ( month1 < 10 ) month1 = "0" + month1;
+      var day1   = date1.getDate();
+      if ( day1 < 10 ) day1 = "0" + day1;
+      //alert(year1 + "-" + month1 + "-" + day1);
+      return year1 + "-" + month1 + "-" + day1;
     }
 
     /*
