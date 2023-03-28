@@ -31,6 +31,22 @@
     <link href="ui/dp/css/layout.css"                 media="all" rel="stylesheet" type="text/css" />        
     <link href="ui/dp/css/bootstrap-overwrite.css"                 media="all" rel="stylesheet" type="text/css" />        
 
+
+    <style>
+      /* 테이블 컬럼명의 글자색 blue */
+      div#jqgh_tableList1Grid_BASE_DATE {
+        color: blue;
+      }
+      div#jqgh_tableList2Grid_BASE_DATE {
+        color: blue;
+      }      
+      div#jqgh_tableList1Grid_ROW_CNT{
+        color: blue;
+      }
+      div#jqgh_tableList1Grid_STORAGE_MB{
+        color: blue;
+      }
+      </style>
 </head>
 
 <body>
@@ -114,7 +130,7 @@
           <button id="btnCollapse1" type="button" class="btn btn-secondary btn-sm d-none">-줄이기</button>
         </div>
 
-        <div id="bottomData1" class="col-12" style="height: 350px; overflow-y:scroll;">
+        <div id="bottomData1" class="col-12" style="height: 300px; overflow-y:scroll;">
 
           <div id="tableList1Div">
             <table id="tableList1Grid"></table>
@@ -208,7 +224,7 @@
       <!--
       TABLE 정보 시작
       -->       
-      <div class="row" id="bottomDivRow2">
+      <div class="row" id="bottomDivRow2" >
 
         <div align="right" class="mb-2 mt-2">
           <span style="font-weight: bold; font-size: 20px; float: left">전사공통(IF)</span>
@@ -218,7 +234,7 @@
           <button id="btnCollapse2" type="button" class="btn btn-secondary btn-sm d-none">-줄이기</button>
         </div>
 
-        <div id="bottomData2" class="col-12" style="height: 350px; overflow-y:scroll;">
+        <div id="bottomData2" class="col-12" style="height: 300px; overflow-y:scroll;">
 
           <div id="tableList2Div">
             <table id="tableList2Grid"></table>
@@ -266,17 +282,18 @@
     <script type="text/javascript">
 
     var formatUtil;
-    var chartDomLegacy;
-    var myChartLegacy;
+    var chartDomLegacy = null;
+    var myChartLegacy = null;
 
-    var chartDomDw;
-    var myChartDw;
-
-
+    var chartDomDw = null;
+    var myChartDw = null;
 
     function fn_set_event()
     {
-      formatUtil = echarts.format;
+      setChartDataLegacy();
+      setChartDataDw();
+
+      //formatUtil = echarts.format;
 
       //alert("fn_set_event");
       //drawChartSample();
@@ -284,6 +301,33 @@
       fn_setGrid();
 
       drawChartLegacy();
+      drawChartDw();
+
+      ////화면 크기 조절
+      $(window).bind('resize', function() {
+        console.log('window.resize ! myChartDw.getWidth() : ' + myChartDw.getWidth() );
+        console.log('window.resize ! myChartLegacy.getWidth() : ' + myChartLegacy.getWidth() );
+        // Legcacy area
+        if ( $('#bottomDivRow1').width() > 0 ) {
+          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+          $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+        } 
+        // DW area
+        if ( $('#bottomDivRow2').width() > 0 ) {
+          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+          $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
+        }
+
+        if ( myChartDw.getWidth() != 0 )     myChartDw.resize();
+        if ( myChartLegacy.getWidth() != 0 ) myChartLegacy.resize();
+
+      }).trigger('resize');
+
+      $('.nav-item').click(function(){
+        console.log('nav-item.resize !' + myChartDw.getWidth());
+        if ( myChartDw.getWidth() == 0 ) myChartDw.resize();
+        if ( myChartLegacy.getWidth() == 0 ) myChartLegacy.resize();
+      });
 
       // 기간계
       $('#btnExpand1').click(function(){
@@ -291,8 +335,15 @@
         document.getElementById('btnExpand1').classList.add('d-none');
         document.getElementById('btnCollapse1').classList.remove('d-none');
         //myChartLegacy.resize();
+        document.getElementById('bottomData1').style.height = '300px';
 
-        document.getElementById('bottomData1').style.height = '700px';
+        var rowIds = $("#tableList1Grid").jqGrid("getDataIDs");
+        for (var i = 0; i < rowIds.length; i++) {
+          var rowId = rowIds[i];
+          var rowData = $("#tableList1Grid").jqGrid("getRowData", rowId);
+          var rowHeight = 100;
+          $("#tableList1Grid").jqGrid("setRowData", rowId, false, { height: rowHeight }); // 각 행의 높이 조정
+        }
 
       });
 
@@ -301,7 +352,15 @@
         document.getElementById('btnCollapse1').classList.add('d-none');
         document.getElementById('btnExpand1').classList.remove('d-none');
         //myChartLegacy.resize();
-        document.getElementById('bottomData1').style.height = '350px';
+        document.getElementById('bottomData1').style.height = '300px';
+
+        var rowIds = $("#tableList1Grid").jqGrid("getDataIDs");
+        for (var i = 0; i < rowIds.length; i++) {
+          var rowId = rowIds[i];
+          var rowData = $("#tableList1Grid").jqGrid("getRowData", rowId);
+          var rowHeight = 23;
+          $("#tableList1Grid").jqGrid("setRowData", rowId, false, { height: rowHeight }); // 각 행의 높이 조정
+        }
 
       });
 
@@ -315,7 +374,15 @@
         document.getElementById('btnCollapse2').classList.remove('d-none');
         //myChartLegacy.resize();
 
-        document.getElementById('bottomData2').style.height = '700px';
+        document.getElementById('bottomData2').style.height = '300px';
+
+        var rowIds = $("#tableList2Grid").jqGrid("getDataIDs");
+        for (var i = 0; i < rowIds.length; i++) {
+          var rowId = rowIds[i];
+          var rowData = $("#tableList2Grid").jqGrid("getRowData", rowId);
+          var rowHeight = 100;
+          $("#tableList2Grid").jqGrid("setRowData", rowId, false, { height: rowHeight }); // 각 행의 높이 조정
+        }
 
       });
 
@@ -324,7 +391,15 @@
         document.getElementById('btnCollapse2').classList.add('d-none');
         document.getElementById('btnExpand2').classList.remove('d-none');
         //myChartLegacy.resize();
-        document.getElementById('bottomData2').style.height = '350px';
+        document.getElementById('bottomData2').style.height = '300px';
+
+        var rowIds = $("#tableList2Grid").jqGrid("getDataIDs");
+        for (var i = 0; i < rowIds.length; i++) {
+          var rowId = rowIds[i];
+          var rowData = $("#tableList2Grid").jqGrid("getRowData", rowId);
+          var rowHeight = 23;
+          $("#tableList2Grid").jqGrid("setRowData", rowId, false, { height: rowHeight }); // 각 행의 높이 조정
+        }
 
       });
 
@@ -339,9 +414,19 @@
 
       document.getElementById('dwBaseDate').innerHTML = fn_getTodayStr();
 
+
+      //window.addEventListener('resize', fn_onChartResize);
+
       //initEcharts(echarts);
       //drawChartDw();
       //convertData(rawData, data, '');
+    }
+
+    function fn_onChartResize() {
+      //alert("resize");
+      myChartLegacy.resize();
+      myChartDw.resize();      
+
     }
 
     function fn_getDayPlusStr(str) {
@@ -354,7 +439,7 @@
       var day1   = tomorrow.getDate();      
       if ( month1 < 10 ) month1 = "0" + month1;
       if ( day1 < 10 ) day1 = "0" + day1;
-      alert(year1 + "-" + month1 + "-" + day1);
+      //console.log(year1 + "-" + month1 + "-" + day1);
       return year1 + "-" + month1 + "-" + day1;
     }
 
@@ -368,7 +453,7 @@
       var day1   = yesterday.getDate();      
       if ( month1 < 10 ) month1 = "0" + month1;
       if ( day1 < 10 ) day1 = "0" + day1;
-      alert(year1 + "-" + month1 + "-" + day1);
+      // console.log(year1 + "-" + month1 + "-" + day1);
       return year1 + "-" + month1 + "-" + day1;
     }
 
@@ -387,7 +472,7 @@
     * 그리드 정의
     */
     function fn_setGrid() {
-      
+
       $("#tableUsageTop10Grid").jqGrid({
           datatype: "local",
           height: '100%',	//그리드 높이 설정(px, %, auto)
@@ -440,7 +525,7 @@
                 { RN:5, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "François", TABLE_DESC: "Hollande", DEPT_NM: "부서1", STORAGE_MB:2, ROW_CNT:3, BASE_DATE:'2023-03-27' }
             ],
 
-        height: '350px',	//그리드 높이 설정(px, %, auto)
+        height: '250px',	//그리드 높이 설정(px, %, auto)
         autowidth: true,	//그리드 상위 Element의 width로 자동 계산
         shrinkToFit: true,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
         //shrinkToFit: false,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
@@ -460,6 +545,7 @@
             $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
           } 
         },
+        //rowHeight: auto,
         rowNum: 200,	//한페이지에 보여질 데이터 수
         rownumbers: false,	//줄번호를 자동으로 표시할지 여부
         rowList: [10, 50, 100],	//표시되는 행의 수
@@ -490,7 +576,7 @@
                 ,{name:'DEPT_NM'         , index:'DEPT_NM'          ,width:150  ,align:'center'   ,label:'현업부서' }
                 //,{name:'STORAGE_MB'      , index:'STORAGE_MB'       ,width:90  ,align:'right'  ,label:'용량(MB)', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
                 //,{name:'ROW_CNT'         , index:'ROW_CNT'          ,width:90  ,align:'right' ,label:'건수', formatter: "integer"   , formatoptions: { thousandsSeparator: ","}}
-                ,{name:'BASE_DATE'       , index:'BASE_DATE'        ,width:110  ,align:'center'  ,label:'데이터기준일'}
+                ,{name:'BASE_DATE'       , index:'BASE_DATE'        ,width:110  ,align:'center'  ,label:'데이터기준일', }
         ],
 
         data: [
@@ -501,7 +587,7 @@
                 { RN:5, TABLE_ENG_NM: 'TABLE1', TABLE_NM: "François", TABLE_DESC: "Hollande", DEPT_NM: "부서1", BASE_DATE:'2023-03-27' }
         ],
 
-        height: '350px',	//그리드 높이 설정(px, %, auto)
+        height: '250px',	//그리드 높이 설정(px, %, auto)
         autowidth: true,	//그리드 상위 Element의 width로 자동 계산
         shrinkToFit: true,	//우측 스크롤바 위의 공간을 없애고 width 채움(default:true)
         //shrinkToFit: true,
@@ -525,7 +611,7 @@
   //          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
             $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
           } 
-
+          
         },
 
         rowNum: 10,	//한페이지에 보여질 데이터 수
@@ -542,34 +628,16 @@
         viewsortcols: [true, 'vertical', true]
       });
 
-      //화면 크기 조절
-      // $(window).bind('resize', function() {
-      //   //$('#tableList1Grid').setGridWidth($('#tableList1Div').width(), true);
-      //   //$('#tableList2Grid').setGridWidth($('#bottomData1').width(), true);
-      //   $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
-      //   $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
-        
-      // }).trigger('resize');
-
-      window.addEventListener('resize', function(){
-        //alert("$('#bottomDivRow1').width() : " + $('#bottomDivRow1').width() );
-        //alert("$('#bottomDivRow2').width() : " + $('#bottomDivRow2').width() );
-        if ( $('#bottomDivRow1').width() > 0 ) {
-          $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
-          $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
-        } 
-
-        if ( $('#bottomDivRow2').width() > 0 ) {
-          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
-          $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
-        } 
-
-      });      
-
-      // $('#tableList2Div').bind('resize', function() {
-      //   $('#tableList1Grid').setGridWidth($('#tableList1Div').width(), true);
-      //   $('#tableList2Grid').setGridWidth($('#tableList2Div').width(), true);
-      // }).trigger('resize');
+      // window.addEventListener('resize', function(){
+      //   if ( $('#bottomDivRow1').width() > 0 ) {
+      //     $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
+      //     $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
+      //   } 
+      //   if ( $('#bottomDivRow2').width() > 0 ) {
+      //     $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
+      //     $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
+      //   } 
+      // });      
 
       
     }
@@ -587,7 +655,7 @@
                 //text: 'ECharts Options',
                 //subtext: '2016/04',
                 //left: 'leafDepth'
-              },            
+              },
               tooltip: {
                 trigger: 'item',
                 //triggerOn: 'mousemove'
@@ -718,7 +786,7 @@
                };
       
       myChartLegacy.setOption(option); // 차트 디스플레이
-      window.addEventListener('resize', myChartLegacy.resize);      
+      //////window.addEventListener('resize', myChartLegacy.resize);      
       myChartLegacy.on('click', function(params) {
         // Print name in console
         console.log(params.name);
@@ -742,57 +810,217 @@
       });
     }
 
+    var jsonChartDataLegacy;
     function getChartDataLegacy(){
-      var jsonVal = {
-            "계약(CT)": {
-              //"$count": 661,
-              "계약관리": {"$count": 357,"$bizname": "A01"},
-              "청약": {"$count": 304},
-              "UW": {"$count": 288},
-              "계약": {"$count": 307},
-              "입출금": {"$count": 178},
-              "안내증빙": {"$count": 45},
-              "출수재": {"$count": 137},
-              "대외연계": {"$count": 293},
-              "계약권한": {"$count": 27},
-              "보험수리": {"$count": 144},
-              "통계지표": {"$count": 139},
-              "방카슈랑스": {"$count": 56},
-              "TM": {"$count": 46},
-            },
-            "법인영업(CS)": {
-              //"$count": 295,              
-              "법인기업정보": {"$count": 62},
-              "법인영업활동": {"$count": 61},
-              "법인매출실적": {"$count": 109},
-              "방카제휴": {"$count": 63},
-            },
-            "준법감시(CP)": {
-              //"$count": 295,              
-              "내부통제": {"$count": 50},
-              "자금세탁": {"$count": 47},
-              "세무서관리": {"$count": 8},
-              "법률지식시스템": {"$count": 6},
-              "상시모니터링": {"$count": 61},
-              "정보보호": {"$count": 42},
-            },
-            "개인영업(PS)": {
-              //"$count": 295,              
-              "증원관리": {"$count": 91},
-              "영업조직": {"$count": 92},
-              "영업활동": {"$count": 355},
-              "영업매출": {"$count": 215},
-              "영업이관": {"$count": 11},
-              "영업소득": {"$count": 344},
-              "TC업무": {"$count": 103},
-              "GS": {"$count": 65},
-            }
-      }
+      var jsonVal = jsonChartDataLegacy;
       return jsonVal;
     }
 
+    function setChartDataLegacy(){
+      jsonChartDataLegacy = {
+            "계약(CT)": {
+              //"$count": 661,
+              "계약관리": {"$count": 357,"$bizname": "CT01"},
+              "청약": {"$count": 304, "$bizname": "CT02"},
+              "UW": {"$count": 288,   "$bizname": "CT03"},
+              "계약": {"$count": 307, "$bizname": "CT04"},
+              "입출금": {"$count": 178, "$bizname": "CT05"},
+              "안내증빙": {"$count": 45, "$bizname": "CT06"},
+              "출수재": {"$count": 137, "$bizname": "CT07"},
+              "대외연계": {"$count": 293, "$bizname": "CT08"},
+              "계약권한": {"$count": 27, "$bizname": "CT09"},
+              "보험수리": {"$count": 144, "$bizname": "CT10"},
+              "통계지표": {"$count": 139, "$bizname": "CT11"},
+              "방카슈랑스": {"$count": 56, "$bizname": "CT12"},
+              "TM": {"$count": 46, "$bizname": "CT13"},
+            },
+            "법인영업(CS)": {
+              //"$count": 295,              
+              "법인기업정보": {"$count": 62, "$bizname": "CS01"},
+              "법인영업활동": {"$count": 61, "$bizname": "CS02"},
+              "법인매출실적": {"$count": 109, "$bizname": "CS03"},
+              "방카제휴": {"$count": 63, "$bizname": "CS04"},
+            },
+            "준법감시(CP)": {
+              //"$count": 295,              
+              "내부통제": {"$count": 50, "$bizname": "CP01"},
+              "자금세탁": {"$count": 47, "$bizname": "CP02"},
+              "세무서관리": {"$count": 8, "$bizname": "CP03"},
+              "법률지식시스템": {"$count": 6, "$bizname": "CP04"},
+              "상시모니터링": {"$count": 61, "$bizname": "CP05"},
+              "정보보호": {"$count": 42, "$bizname": "CP06"},
+            },
+            "개인영업(PS)": {
+              //"$count": 295,              
+              "증원관리": {"$count": 91, "$bizname": "PS01"},
+              "영업조직": {"$count": 92, "$bizname": "PS02"},
+              "영업활동": {"$count": 355, "$bizname": "PS03"},
+              "영업매출": {"$count": 215, "$bizname": "PS04"},
+              "영업이관": {"$count": 11, "$bizname": "PS05"},
+              "영업소득": {"$count": 344, "$bizname": "PS06"},
+              "TC업무":   {"$count": 103, "$bizname": "PS07"},
+              "GS":       {"$count": 65, "$bizname": "PS08"},
+            }
+      }
+      return ;
+    }
+
+    function drawTreemapChartDw(pChartData, pChartName)
+    {
+      chartDomDw = document.getElementById(pChartName);
+      myChartDw = echarts.init(chartDomDw);
+      myChartDw.showLoading();
+      myChartDw.hideLoading();
+      
+      var optionDw;
+      optionDw = {
+              title: {
+                //text: 'ECharts Options',
+                //subtext: '2016/04',
+                //left: 'leafDepth'
+              },
+              tooltip: {
+                trigger: 'item',
+                //triggerOn: 'mousemove'
+
+                  formatter: function (info) {
+                      var value = info.value;
+                      var treePathInfo = info.treePathInfo;
+                      var treePath = [];
+                      var tablePctVal = 0;
+                      var tableTotCntVal = 0;
+                      var subjName = '';
+                      //alert(JSON.stringify(info));
+                      //console.log(JSON.stringify(info));
+                      tableTotCntVal = treePathInfo[0].value;
+
+                      for (var i = 1; i < treePathInfo.length; i++) {
+                          treePath.push(treePathInfo[i].name);
+                      }
+
+                      if (treePathInfo.length == 2) {
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      }
+
+                      if (treePathInfo.length == 3) {
+                        tableTotCntVal = treePathInfo[1].value;
+                        tablePctVal = info.value / tableTotCntVal;
+                        //반올림
+                        tablePctVal = Math.round(tablePctVal*1000)/10;
+                        return [
+                          //'<div class="tooltip-title">' + formatUtil.encodeHTML(treePath.join('/')) + '</div>',
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          tablePctVal + ' %',
+                          '<BR>(' + value + ')'+'<span style="color: red">▲ ' + 2 + '</span>',
+                        ].join('');
+                      } else {
+                        return [
+                          '<div class="tooltip-title">' + info.name + '</div>',
+                          '' + value + '',
+                        ].join('');
+                      }
+
+                      if ( treePathInfo.length == 3 ) {
+                        console.log('1:'+ JSON.stringify(treePathInfo[1]));
+                        console.log('2:'+ JSON.stringify(treePathInfo[2]));
+                        tablePctVal = treePathInfo[2].value / treePathInfo[1].value * 100;
+//                        tablePctVal = Math.ceil(tablePctVal / 10) * 10;
+                        subjName = treePathInfo[2].value + '/' + treePathInfo[1].value;
+                      }                      
+
+                  }
+
+              },
+              series: [
+                          {
+                            name: '정보계',
+                            type: 'treemap',
+                            data: pChartData.children,
+                            visibleMin: 300,
+                            //width: '95%', height: '95%',
+                            width: '100%', height: '100%',
+                            //data: data.children,
+                            leafDepth: 1,
+                            label: {
+                              show: true,
+                              formatter: function (params) {
+
+                                if (params.treePathInfo.length == 2) {
+                                  //return '{${params.name}}'
+                                }
+                                var totSize=  params.treePathInfo[0].value;
+                                var size=(params.value/totSize)*100;
+                                if (size>8) {
+                                  return '{lg|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + 2 + '}';
+                                }
+                                if (size>2) {
+                                  return '{md|'+params.name+'}';
+                                }
+                                return '{sm|'+params.name+'}';
+                              },
+                              rich: {
+                                lg: { fontSize: 20, },
+                                lgRed: { fontSize: 20, color: '#f00'},                                
+                                md: { fontSize: 15, },
+                                mdRed: { fontSize: 15, color: '#f00'},
+                                sm: { fontSize: 10, }
+                              }
+                            },
+                            levels: [
+                                      {
+                                        itemStyle: {
+                                          borderColor: '#DDDDDD', 
+                                          //borderColor: '#555', 
+                                          borderWidth: 4,
+                                          gapWidth: 4
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.6],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.7,
+                                          gapWidth: 2,
+                                          borderWidth: 2
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5],
+                                        itemStyle: {
+                                          borderColorSaturation: 0.6,
+                                          gapWidth: 1
+                                        }
+                                      },
+                                      {
+                                        colorSaturation: [0.3, 0.5]
+                                      }
+                                    ]
+                          }
+                      ]
+               };
+      
+      myChartDw.setOption(optionDw); // 차트 디스플레이
+      //window.addEventListener('resize', myChartDw.resize);
+
+    }
+
+    var jsonChartDataDw;
     function getChartDataDw(){
-      var jsonVal = {
+      var jsonVal = jsonChartDataDw;
+      return jsonVal;
+    }
+
+    function setChartDataDw(){
+      jsonChartDataDw = {    
             "계약(CT)": {
               //"$count": 661,
               "계약관리": {"$count": 357,"$bizname": "A01"},
@@ -837,7 +1065,7 @@
               "GS": {"$count": 65},
             }
       }
-      return jsonVal;
+      return ;
     }
 
     const dataLegacy = {
@@ -860,7 +1088,7 @@
 		  var chartData1 = getChartDataDw();
 		  var chartData = { children: [] };
       convertData(chartData1, chartData, '');
-		  drawTreemapChartLegacy(chartData, 'chartDw');
+		  drawTreemapChartDw(chartData, 'chartDw');
     }
 
     function convertData(source, target, basePath) {
@@ -889,15 +1117,15 @@
   
 
     function initChartLegacy(){
-      var chartDom = document.getElementById('chartLegacy');
-      var myChart = echarts.init(chartDom);
-      myChart.clear();
+      chartDomLegacy = document.getElementById('chartLegacy');
+      myChartLegacy = echarts.init(chartDomLegacy);
+      myChartLegacy.clear();
     }
     
     function initChartDw(){
-      var chartDom = document.getElementById('chartDw');
-      var myChart = echarts.init(chartDom);
-      myChart.clear();
+      chartDomDw = document.getElementById('chartDw');
+      myChartDw = echarts.init(chartDomDw);
+      myChartDw.clear();
     }
 
     $(document).ready(function() {
