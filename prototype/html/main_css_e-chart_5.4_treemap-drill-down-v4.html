@@ -969,49 +969,67 @@
       //window.addEventListener('resize', myChartDw.resize);
     }
 
-    var jsonChartDataDw;
-    function getChartDataDw(){
-      var jsonVal = jsonChartDataDw;
-      return jsonVal;
-    }
-
     function getChartRawDataDw(){
       var jsonData1 = [];
-      jsonData1.push({"ID":"CT",   "PAR_ID":"NULL", "BIZ_NM":"계약(CT)", "TAB_CNT":"0", "INC_VAL1":"", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"계약관리", "TAB_CNT":"357", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"청약", "TAB_CNT":"304", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"UW",   "TAB_CNT":"288", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"계약", "TAB_CNT":"307", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"입출금", "TAB_CNT":"178", "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"안내증빙", "TAB_CNT":"45", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"출수재", "TAB_CNT":"137", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"대외연계", "TAB_CNT":"293", "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"계약권한", "TAB_CNT":"27", "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"보험수리", "TAB_CNT":"144", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"통계지표", "TAB_CNT":"139", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"방카슈랑스", "TAB_CNT":"56", "INC_VAL1":"0", "INC_VAL2":"2"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_NM":"TM", "TAB_CNT":"46", "INC_VAL1":"0", "INC_VAL2":"1"});
+      jsonData1.push({"ID":"CT",   "PAR_ID":"NULL", "BIZ_ID":"CT", "name":"계약(CT)", "value":0, "INC_VAL1":"", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_ID":"CT01", "name":"계약관리", "value":357, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT02", "PAR_ID":"CT", "BIZ_ID":"CT02", "name":"청약", "value":304, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT03", "PAR_ID":"CT", "BIZ_ID":"CT03", "name":"UW",   "value":288, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT04", "PAR_ID":"CT", "BIZ_ID":"CT04", "name":"계약", "value":307, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT05", "PAR_ID":"CT", "BIZ_ID":"CT05", "name":"입출금", "value":178, "INC_VAL1":"0", "INC_VAL2":"1"});
+      jsonData1.push({"ID":"CT06", "PAR_ID":"CT", "BIZ_ID":"CT06", "name":"안내증빙", "value":45, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT07", "PAR_ID":"CT", "BIZ_ID":"CT07", "name":"출수재", "value":137, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT08", "PAR_ID":"CT", "BIZ_ID":"CT08", "name":"대외연계", "value":293, "INC_VAL1":"0", "INC_VAL2":"1"});
+      jsonData1.push({"ID":"CT09", "PAR_ID":"CT", "BIZ_ID":"CT09", "name":"계약권한", "value":27, "INC_VAL1":"0", "INC_VAL2":"1"});
+      jsonData1.push({"ID":"CT10", "PAR_ID":"CT", "BIZ_ID":"CT10", "name":"보험수리", "value":144, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT11", "PAR_ID":"CT", "BIZ_ID":"CT11", "name":"통계지표", "value":139, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CT12", "PAR_ID":"CT", "BIZ_ID":"CT12", "name":"방카슈랑스", "value":56, "INC_VAL1":"0", "INC_VAL2":"2"});
+      jsonData1.push({"ID":"CT13", "PAR_ID":"CT", "BIZ_ID":"CT13", "name":"TM", "value":46, "INC_VAL1":"0", "INC_VAL2":"1"});
 
-      jsonData1.push({"ID":"CS",   "PAR_ID":"NULL", "BIZ_NM":"법인영업(CS)", "TAB_CNT":"0", "INC_VAL1":"", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS01", "PAR_ID":"CS", "BIZ_NM":"법인기업정보", "TAB_CNT":"357", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS02", "PAR_ID":"CS", "BIZ_NM":"법인영업활동", "TAB_CNT":"304", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS03", "PAR_ID":"CS", "BIZ_NM":"법인매출실적",   "TAB_CNT":"288", "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS04", "PAR_ID":"CS", "BIZ_NM":"방카제휴", "TAB_CNT":"307", "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CS",   "PAR_ID":"NULL", "BIZ_ID":"CS", "name":"법인영업(CS)", "value":0, "INC_VAL1":"", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CS01", "PAR_ID":"CS"  , "BIZ_ID":"CS01", "name":"법인기업정보", "value":357, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CS02", "PAR_ID":"CS"  , "BIZ_ID":"CS02", "name":"법인영업활동", "value":304, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CS03", "PAR_ID":"CS"  , "BIZ_ID":"CS03", "name":"법인매출실적",   "value":288, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"ID":"CS04", "PAR_ID":"CS"  , "BIZ_ID":"CS04", "name":"방카제휴", "value":307, "INC_VAL1":"0", "INC_VAL2":"0"});
       return jsonData1;
     }
 
-    function setChartDataDwJson(){
-      var jsonChartDataDw2 = {};
+    function getChartDataDwJson(){
+      var jsonData = {children: []};
       var jsonArray1 = getChartRawDataDw();
       //alert("setChartDataDwJson");
-      console.log(jsonArray1);
+//      console.log(jsonArray1);
       for (idx in jsonArray1) {
         //console.log("idx : " + idx); 
         //console.log(jsonArray1[idx]);
-        if ( jsonArray1[idx].BIZ_NM == 'NULL' ) 
-        {
 
+        //jsonData.children.push(jsonArray1[idx]);
+        makeChartDataDwJson(jsonData, jsonArray1[idx], '');
+
+      };
+      console.log(jsonData);
+      return jsonData;
+    }
+
+    function makeChartDataDwJson(target, source, parentName) {
+
+      if ( source.PAR_ID == 'NULL' ) {
+        target.children.push(source);
+        return;
+      }
+      else {
+        for ( idx in target.children) {
+          
+          target.children[idx]
+          makeChartDataDwJson(target, source, parentName);
         }
+
+      }
+      return;
+      for (idx in jsonArray1) {
+        //console.log("idx : " + idx); 
+        //console.log(jsonArray1[idx]);
+        target.children.push(source);
         //console.log();
 
         //jsonChartDataDw2
@@ -1020,6 +1038,7 @@
       };
 
     }
+
 
     function setChartDataDw(){
       jsonChartDataDw = {    
@@ -1070,10 +1089,10 @@
       return ;
     }
 
-    const dataLegacy = {
+    var dataLegacy = {
       children: []
     };
-    const dataDw = {
+    var dataDw = {
       children: []
     };
 
@@ -1088,11 +1107,19 @@
       drawTreemapChartLegacy(chartData, 'chartLegacy');
     }
 
+
+    var jsonChartDataDw;
+    function getChartDataDw(){
+      var jsonVal = jsonChartDataDw;
+      return jsonVal;
+    }
+
     function drawChartDw(){
 		  initChartDw();
 		  var chartData1 = getChartDataDw();
 		  var chartData = { children: [] };
       convertData(chartData1, chartData, '');
+      chartData = getChartDataDwJson();
 		  drawTreemapChartDw(chartData, 'chartDw');
     }
 
@@ -1138,7 +1165,8 @@
         fn_set_event();
         //fn_drawChartBizArchi();
         //drawChartSample();
-        setChartDataDwJson();
+
+        //setChartDataDwJson();
     });
 
     function hideTableUsageDivTop10(){
