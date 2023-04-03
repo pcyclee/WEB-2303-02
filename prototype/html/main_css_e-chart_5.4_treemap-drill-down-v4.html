@@ -293,7 +293,7 @@
     function fn_set_event()
     {
       // 데이터 초기화
-      setChartDataLegacy();
+      //setChartDataLegacy();
       //setChartDataDw();
 
       //formatUtil = echarts.format;
@@ -316,7 +316,7 @@
           //alert('nav-link setTimeout');
           if ( chartDomDw == null ) {
             setTimeout(function (){
-              setChartDataDw();
+              //setChartDataDw();
               drawChartDw();
             }, 500 );
           }
@@ -353,7 +353,6 @@
           var rowHeight = 23;
           $("#tableList1Grid").jqGrid("setRowData", rowId, false, { height: rowHeight }); // 각 행의 높이 조정
         }
-
       });
 
       // 정보계
@@ -570,17 +569,7 @@
 
       ////화면 크기 조절
       window.addEventListener('resize', function(){
-
         fn_setBottomGridWidth();
-        return;
-        // if ( $('#bottomDivRow1').width() > 0 ) {
-        //   $('#tableList1Grid').setGridWidth($('#bottomDivRow1').width()-30, true);
-        //   $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-30, true);          
-        // } 
-        // if ( $('#bottomDivRow2').width() > 0 ) {
-        //   $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-30, true);
-        //   $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-30, true);          
-        // } 
       });      
 
       function fn_setBottomGridWidth(){
@@ -591,7 +580,7 @@
           $('#tableList2Grid').setGridWidth($('#bottomDivRow1').width()-35, true);
           if ( myChartLegacy != null ) myChartLegacy.resize();
         } else if (navTabName == '#tab2') {
-          $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-35, true);          
+          $('#tableList1Grid').setGridWidth($('#bottomDivRow2').width()-35, true);          
           $('#tableList2Grid').setGridWidth($('#bottomDivRow2').width()-35, true);
           if ( myChartDw != null ) myChartDw.resize();
         }
@@ -695,19 +684,25 @@
                                 if (size>8) {
                                   return '{lg|'+params.name+'}'
                                     + '\n{md|' + params.value + '}'
-                                    + '\n{mdRed|▲' + 2 + '}';
+                                    + '\n{mdRed|▲' + params.data.inc_val1 + '}';
                                 }
                                 if (size>2) {
-                                  return '{md|'+params.name+'}';
+                                  return '{md|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + params.data.inc_val1 + '}';
                                 }
-                                return '{sm|'+params.name+'}';
+                                return '{sm|'+params.name+'}'
+                                    + '\n{sm|' + params.value + '}'
+                                    + '\n{smRed|▲' + params.data.inc_val1 + '}';
+
                               },
                               rich: {
                                 lg: { fontSize: 20, },
                                 lgRed: { fontSize: 20, color: '#f00'},                                
                                 md: { fontSize: 15, },
                                 mdRed: { fontSize: 15, color: '#f00'},
-                                sm: { fontSize: 10, }
+                                sm: { fontSize: 10, },
+                                smRed: { fontSize: 10, color: '#f00'},
                               }
                             },
                             levels: [
@@ -764,61 +759,6 @@
         return;
 
       });
-    }
-
-    var jsonChartDataLegacy;
-    function getChartDataLegacy(){
-      var jsonVal = jsonChartDataLegacy;
-      return jsonVal;
-    }
-
-    function setChartDataLegacy(){
-      jsonChartDataLegacy = {
-            "계약(CT)": {
-              //"$count": 661,
-              "계약관리": {"$count": 357,"$bizname": "CT01"},
-              "청약": {"$count": 304, "$bizname": "CT02"},
-              "UW": {"$count": 288,   "$bizname": "CT03"},
-              "계약": {"$count": 307, "$bizname": "CT04"},
-              "입출금": {"$count": 178, "$bizname": "CT05"},
-              "안내증빙": {"$count": 45, "$bizname": "CT06"},
-              "출수재": {"$count": 137, "$bizname": "CT07"},
-              "대외연계": {"$count": 293, "$bizname": "CT08"},
-              "계약권한": {"$count": 27, "$bizname": "CT09"},
-              "보험수리": {"$count": 144, "$bizname": "CT10"},
-              "통계지표": {"$count": 139, "$bizname": "CT11"},
-              "방카슈랑스": {"$count": 56, "$bizname": "CT12"},
-              "TM": {"$count": 46, "$bizname": "CT13"},
-            },
-            "법인영업(CS)": {
-              //"$count": 295,              
-              "법인기업정보": {"$count": 62, "$bizname": "CS01"},
-              "법인영업활동": {"$count": 61, "$bizname": "CS02"},
-              "법인매출실적": {"$count": 109, "$bizname": "CS03"},
-              "방카제휴": {"$count": 63, "$bizname": "CS04"},
-            },
-            "준법감시(CP)": {
-              //"$count": 295,              
-              "내부통제": {"$count": 50, "$bizname": "CP01"},
-              "자금세탁": {"$count": 47, "$bizname": "CP02"},
-              "세무서관리": {"$count": 8, "$bizname": "CP03"},
-              "법률지식시스템": {"$count": 6, "$bizname": "CP04"},
-              "상시모니터링": {"$count": 61, "$bizname": "CP05"},
-              "정보보호": {"$count": 42, "$bizname": "CP06"},
-            },
-            "개인영업(PS)": {
-              //"$count": 295,              
-              "증원관리": {"$count": 91, "$bizname": "PS01"},
-              "영업조직": {"$count": 92, "$bizname": "PS02"},
-              "영업활동": {"$count": 355, "$bizname": "PS03"},
-              "영업매출": {"$count": 215, "$bizname": "PS04"},
-              "영업이관": {"$count": 11, "$bizname": "PS05"},
-              "영업소득": {"$count": 344, "$bizname": "PS06"},
-              "TC업무":   {"$count": 103, "$bizname": "PS07"},
-              "GS":       {"$count": 65, "$bizname": "PS08"},
-            }
-      }
-      return ;
     }
 
     function drawTreemapChartDw(pChartData, pChartName)
@@ -910,6 +850,10 @@
                               show: true,
                               formatter: function (params) {
 
+                                console.log('-----------------------------------------------');
+                                console.log('formatter 902 : ' + JSON.stringify(params) )  ;
+                                console.log('-----------------------------------------------');
+
                                 if (params.treePathInfo.length == 2) {
                                   //return '{${params.name}}'
                                 }
@@ -918,19 +862,25 @@
                                 if (size>8) {
                                   return '{lg|'+params.name+'}'
                                     + '\n{md|' + params.value + '}'
-                                    + '\n{mdRed|▲' + 2 + '}';
+                                    + '\n{mdRed|▲' + params.data.inc_val1 + '}';
                                 }
                                 if (size>2) {
-                                  return '{md|'+params.name+'}';
+                                  return '{md|'+params.name+'}'
+                                    + '\n{md|' + params.value + '}'
+                                    + '\n{mdRed|▲' + params.data.inc_val1 + '}';
                                 }
-                                return '{sm|'+params.name+'}';
+                                return '{sm|'+params.name+'}'
+                                    + '\n{sm|' + params.value + '}'
+                                    + '\n{smRed|▲' + params.data.inc_val1 + '}';
+
                               },
                               rich: {
                                 lg: { fontSize: 20, },
                                 lgRed: { fontSize: 20, color: '#f00'},                                
                                 md: { fontSize: 15, },
                                 mdRed: { fontSize: 15, color: '#f00'},
-                                sm: { fontSize: 10, }
+                                sm: { fontSize: 10, },
+                                smRed: { fontSize: 10, color: '#f00'},
                               }
                             },
                             levels: [
@@ -969,133 +919,110 @@
       //window.addEventListener('resize', myChartDw.resize);
     }
 
+    function getChartRawDataLegacy(){
+      return getChartRawDataDw();
+    }
+
     function getChartRawDataDw(){
       var jsonData1 = [];
-      jsonData1.push({"ID":"CT",   "PAR_ID":"NULL", "BIZ_ID":"CT", "name":"계약(CT)", "value":0, "INC_VAL1":"", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT01", "PAR_ID":"CT", "BIZ_ID":"CT01", "name":"계약관리", "value":357, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT02", "PAR_ID":"CT", "BIZ_ID":"CT02", "name":"청약", "value":304, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT03", "PAR_ID":"CT", "BIZ_ID":"CT03", "name":"UW",   "value":288, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT04", "PAR_ID":"CT", "BIZ_ID":"CT04", "name":"계약", "value":307, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT05", "PAR_ID":"CT", "BIZ_ID":"CT05", "name":"입출금", "value":178, "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT06", "PAR_ID":"CT", "BIZ_ID":"CT06", "name":"안내증빙", "value":45, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT07", "PAR_ID":"CT", "BIZ_ID":"CT07", "name":"출수재", "value":137, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT08", "PAR_ID":"CT", "BIZ_ID":"CT08", "name":"대외연계", "value":293, "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT09", "PAR_ID":"CT", "BIZ_ID":"CT09", "name":"계약권한", "value":27, "INC_VAL1":"0", "INC_VAL2":"1"});
-      jsonData1.push({"ID":"CT10", "PAR_ID":"CT", "BIZ_ID":"CT10", "name":"보험수리", "value":144, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT11", "PAR_ID":"CT", "BIZ_ID":"CT11", "name":"통계지표", "value":139, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CT12", "PAR_ID":"CT", "BIZ_ID":"CT12", "name":"방카슈랑스", "value":56, "INC_VAL1":"0", "INC_VAL2":"2"});
-      jsonData1.push({"ID":"CT13", "PAR_ID":"CT", "BIZ_ID":"CT13", "name":"TM", "value":46, "INC_VAL1":"0", "INC_VAL2":"1"});
+      jsonData1.push({"id":"CT",   "par_id":"NULL", "biz_id":"CT", "name":"계약(CT)", "value":0, "inc_val1":"3", "inc_val2":"0"});
+      jsonData1.push({"id":"CT01", "par_id":"CT", "biz_id":"CT01", "name":"계약관리", "value":357, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT02", "par_id":"CT", "biz_id":"CT02", "name":"청약", "value":304, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT03", "par_id":"CT", "biz_id":"CT03", "name":"UW",   "value":288, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT04", "par_id":"CT", "biz_id":"CT04", "name":"계약", "value":307, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT05", "par_id":"CT", "biz_id":"CT05", "name":"입출금", "value":178, "inc_val1":"0", "inc_val2":"1"});
+      jsonData1.push({"id":"CT06", "par_id":"CT", "biz_id":"CT06", "name":"안내증빙", "value":45, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT07", "par_id":"CT", "biz_id":"CT07", "name":"출수재", "value":137, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT08", "par_id":"CT", "biz_id":"CT08", "name":"대외연계", "value":293, "inc_val1":"0", "inc_val2":"1"});
+      jsonData1.push({"id":"CT09", "par_id":"CT", "biz_id":"CT09", "name":"계약권한", "value":27, "inc_val1":"0", "inc_val2":"1"});
+      jsonData1.push({"id":"CT10", "par_id":"CT", "biz_id":"CT10", "name":"보험수리", "value":144, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT11", "par_id":"CT", "biz_id":"CT11", "name":"통계지표", "value":139, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CT12", "par_id":"CT", "biz_id":"CT12", "name":"방카슈랑스", "value":56, "inc_val1":"0", "inc_val2":"2"});
+      jsonData1.push({"id":"CT13", "par_id":"CT", "biz_id":"CT13", "name":"TM", "value":46, "inc_val1":"0", "inc_val2":"1"});
 
-      jsonData1.push({"ID":"CS",   "PAR_ID":"NULL", "BIZ_ID":"CS", "name":"법인영업(CS)", "value":0, "INC_VAL1":"", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS01", "PAR_ID":"CS"  , "BIZ_ID":"CS01", "name":"법인기업정보", "value":357, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS02", "PAR_ID":"CS"  , "BIZ_ID":"CS02", "name":"법인영업활동", "value":304, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS03", "PAR_ID":"CS"  , "BIZ_ID":"CS03", "name":"법인매출실적",   "value":288, "INC_VAL1":"0", "INC_VAL2":"0"});
-      jsonData1.push({"ID":"CS04", "PAR_ID":"CS"  , "BIZ_ID":"CS04", "name":"방카제휴", "value":307, "INC_VAL1":"0", "INC_VAL2":"0"});
+      jsonData1.push({"id":"CS",   "par_id":"NULL", "biz_id":"CS", "name":"법인영업(CS)", "value":0, "inc_val1":"2", "inc_val2":"0"});
+      jsonData1.push({"id":"CS01", "par_id":"CS"  , "biz_id":"CS01", "name":"법인기업정보", "value":357, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CS02", "par_id":"CS"  , "biz_id":"CS02", "name":"법인영업활동", "value":304, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CS03", "par_id":"CS"  , "biz_id":"CS03", "name":"법인매출실적",   "value":288, "inc_val1":"0", "inc_val2":"0"});
+      jsonData1.push({"id":"CS04", "par_id":"CS"  , "biz_id":"CS04", "name":"방카제휴", "value":63, "inc_val1":"0", "inc_val2":"0"});
+
+      jsonData1.push({"id":"CP",   "par_id":"NULL", "biz_id":"CP", "name":"준법감시(CP)", "value":0, "inc_val1":"4", "inc_val2":"0"});
+      jsonData1.push({"id":"CP01", "par_id":"CP"  , "biz_id":"CP01", "name":"내부통제", "value":50, "inc_val1":"30", "inc_val2":"40"});
+      jsonData1.push({"id":"CP02", "par_id":"CP"  , "biz_id":"CP02", "name":"자금세탁", "value":47, "inc_val1":"10", "inc_val2":"20"});
+      jsonData1.push({"id":"CP03", "par_id":"CP"  , "biz_id":"CP03", "name":"세무서관리",   "value":8, "inc_val1":"1", "inc_val2":"10"});
+      jsonData1.push({"id":"CP04", "par_id":"CP"  , "biz_id":"CP04", "name":"법률지식시스템", "value":6, "inc_val1":"0", "inc_val2":"6"});
+      jsonData1.push({"id":"CP05", "par_id":"CP"  , "biz_id":"CP05", "name":"상시모니터링",   "value":61, "inc_val1":"10", "inc_val2":"7"});
+      jsonData1.push({"id":"CP06", "par_id":"CP"  , "biz_id":"CP06", "name":"정보보호", "value":42, "inc_val1":"1", "inc_val2":"9"});
+
+      jsonData1.push({"id":"PS",   "par_id":"NULL", "biz_id":"PS", "name":"개인영업(PS)", "value":0, "inc_val1":"5", "inc_val2":"0"});
+      jsonData1.push({"id":"PS01", "par_id":"PS"  , "biz_id":"PS01", "name":"증원관리", "value":91, "inc_val1":"30", "inc_val2":"40"});
+      jsonData1.push({"id":"PS02", "par_id":"PS"  , "biz_id":"PS02", "name":"영업조직", "value":92, "inc_val1":"10", "inc_val2":"20"});
+      jsonData1.push({"id":"PS03", "par_id":"PS"  , "biz_id":"PS03", "name":"영업활동",   "value":355, "inc_val1":"1", "inc_val2":"10"});
+      jsonData1.push({"id":"PS04", "par_id":"PS"  , "biz_id":"PS04", "name":"영업매출", "value":215, "inc_val1":"0", "inc_val2":"6"});
+      jsonData1.push({"id":"PS05", "par_id":"PS"  , "biz_id":"PS05", "name":"영업이관", "value":11, "inc_val1":"0", "inc_val2":"6"});
+      jsonData1.push({"id":"PS06", "par_id":"PS"  , "biz_id":"PS06", "name":"영업소득", "value":344, "inc_val1":"0", "inc_val2":"6"});
+      jsonData1.push({"id":"PS07", "par_id":"PS"  , "biz_id":"PS07", "name":"TC업무", "value":103, "inc_val1":"0", "inc_val2":"6"});
+      jsonData1.push({"id":"PS08", "par_id":"PS"  , "biz_id":"PS08", "name":"GS", "value":65, "inc_val1":"0", "inc_val2":"6"});
+
       return jsonData1;
+    }
+
+    function getChartDataLegacyJson(){
+      var jsonData = {children: []};
+      var jsonArray1 = getChartRawDataLegacy();
+
+      makeChartDataJson(jsonData, jsonArray1, 'NULL');
+
+      console.log('===========================================');
+      console.log(jsonData);
+      console.log('===========================================');
+      return jsonData;
     }
 
     function getChartDataDwJson(){
       var jsonData = {children: []};
       var jsonArray1 = getChartRawDataDw();
-      //alert("setChartDataDwJson");
-//      console.log(jsonArray1);
-      for (idx in jsonArray1) {
-        //console.log("idx : " + idx); 
-        //console.log(jsonArray1[idx]);
 
-        //jsonData.children.push(jsonArray1[idx]);
-        makeChartDataDwJson(jsonData, jsonArray1[idx], '');
+      makeChartDataJson(jsonData, jsonArray1, 'NULL');
 
-      };
+      console.log('===========================================');
       console.log(jsonData);
+      console.log('===========================================');
       return jsonData;
     }
 
-    function makeChartDataDwJson(target, source, parentName) {
+    function makeChartDataJson(target, source, parentName) {
 
-      if ( source.PAR_ID == 'NULL' ) {
-        target.children.push(source);
-        return;
-      }
-      else {
-        for ( idx in target.children) {
-          
-          target.children[idx]
-          makeChartDataDwJson(target, source, parentName);
+      console.log('makeChartDataDwJson : ' + parentName);
+
+      for ( idx in source ) {
+        console.log('makeChartDataDwJson : ' + parentName);
+        if ( source[idx].par_id == parentName ) {
+          if ( target.children == undefined ) {
+            console.log("target.children is undefined ! ");
+            target.children = [];
+          }
+          console.log("target.children : " + target.children );
+          var source1 = source[idx];
+          //if (parentName == 'NULL' && source1.value == 0 ) delete source1.value;
+          if (source1.value == 0 ) delete source1.value;
+          if (parentName != 'NULL') source1.name = target.name + '.' + source[idx].name;
+          target.children.push(source[idx]);
+          //console.log("pushed row : " + JSON.stringify(source[idx]) );
         }
-
       }
-      return;
-      for (idx in jsonArray1) {
-        //console.log("idx : " + idx); 
-        //console.log(jsonArray1[idx]);
-        target.children.push(source);
-        //console.log();
+      //console.log(target.children.length);
 
-        //jsonChartDataDw2
-
-        //jsonChartDataDw2.add( 
-      };
+      if (target.children != undefined && target.children.length > 0  ){
+        console.log(target.children.length);
+        for ( idx2 in target.children ) {
+          makeChartDataDwJson(target.children[idx2], source, target.children[idx2].id);
+        }
+      }
 
     }
 
-
-    function setChartDataDw(){
-      jsonChartDataDw = {    
-            "계약(CT)": {
-              //"$count": 661,
-              "계약관리": {"$count": 357,"$bizname": "A01"},
-              "청약": {"$count": 304},
-              "UW": {"$count": 288},
-              "계약": {"$count": 307},
-              "입출금": {"$count": 178},
-              "안내증빙": {"$count": 45},
-              "출수재": {"$count": 137},
-              "대외연계": {"$count": 293},
-              "계약권한": {"$count": 27},
-              "보험수리": {"$count": 144},
-              "통계지표": {"$count": 139},
-              "방카슈랑스": {"$count": 56},
-              "TM": {"$count": 46},
-            },
-            "법인영업(CS)": {
-              //"$count": 295,              
-              "법인기업정보": {"$count": 62},
-              "법인영업활동": {"$count": 61},
-              "법인매출실적": {"$count": 109},
-              "방카제휴": {"$count": 63},
-            },
-            "준법감시(CP)": {
-              //"$count": 295,              
-              "내부통제": {"$count": 50},
-              "자금세탁": {"$count": 47},
-              "세무서관리": {"$count": 8},
-              "법률지식시스템": {"$count": 6},
-              "상시모니터링": {"$count": 61},
-              "정보보호": {"$count": 42},
-            },
-            "개인영업(PS)": {
-              //"$count": 295,              
-              "증원관리": {"$count": 91},
-              "영업조직": {"$count": 92},
-              "영업활동": {"$count": 355},
-              "영업매출": {"$count": 215},
-              "영업이관": {"$count": 11},
-              "영업소득": {"$count": 344},
-              "TC업무": {"$count": 103},
-              "GS": {"$count": 65},
-            }
-      }
-      return ;
-    }
-
-    var dataLegacy = {
-      children: []
-    };
-    var dataDw = {
-      children: []
-    };
-
+    /*
     function drawChartLegacy(){
 		  initChartLegacy();
 		  var chartData1 = getChartDataLegacy();
@@ -1105,48 +1032,55 @@
       console.log(JSON.stringify(chartData));      
       console.log("-------------------- drawChartLegacy chartData --------------------");      
       drawTreemapChartLegacy(chartData, 'chartLegacy');
-    }
+    }*/
 
-
-    var jsonChartDataDw;
-    function getChartDataDw(){
-      var jsonVal = jsonChartDataDw;
-      return jsonVal;
+    function drawChartLegacy(){
+		  initChartLegacy();
+		  var chartData = { children: [] };      
+      chartData = getChartDataLegacyJson();
+      console.log("-------------------- drawChartLegacy chartData --------------------");
+      console.log(JSON.stringify(chartData));      
+      console.log("-------------------- drawChartLegacy chartData --------------------");      
+      drawTreemapChartLegacy(chartData, 'chartLegacy');
     }
 
     function drawChartDw(){
 		  initChartDw();
-		  var chartData1 = getChartDataDw();
+		  //var chartData1 = getChartDataDw();
 		  var chartData = { children: [] };
-      convertData(chartData1, chartData, '');
+      //convertData(chartData1, chartData, '');
       chartData = getChartDataDwJson();
+      console.log("-------------------- drawChartDw chartData --------------------");
+      console.log(JSON.stringify(chartData));      
+      console.log("-------------------- drawChartDw chartData --------------------");           
 		  drawTreemapChartDw(chartData, 'chartDw');
     }
 
+  /*
     function convertData(source, target, basePath) {
-    for (let key in source) {
-      let path = basePath ? basePath + '.' + key : key;
-      if (!key.match(/^\$/)) {
-        target.children = target.children || [];
-        const child = {
-          name: path
-        };
-        target.children.push(child);
-        convertData(source[key], child, path);
+      for (let key in source) {
+        let path = basePath ? basePath + '.' + key : key;
+        if (!key.match(/^\$/)) {
+          target.children = target.children || [];
+          const child = {
+            name: path
+          };
+          target.children.push(child);
+          convertData(source[key], child, path);
+        }
+      }
+      if (!target.children) {
+        target.value = source.$count || 1;
+        target.bizname = source.$bizname || 1;      
+      } else {
+        target.children.push({
+          name: basePath,
+          value: source.$count,
+          bizname: 'null'
+        });
       }
     }
-    if (!target.children) {
-      target.value = source.$count || 1;
-      target.bizname = source.$bizname || 1;      
-    } else {
-      target.children.push({
-        name: basePath,
-        value: source.$count,
-        bizname: 'null'
-      });
-    }
-  }
-  
+  */
 
     function initChartLegacy(){
       chartDomLegacy = document.getElementById('chartLegacy');
