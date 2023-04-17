@@ -18,6 +18,7 @@
     <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
     <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
     <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+    <link href="ui/fontawesome-free-6.4.0-web/css/all.css"                 media="all" rel="stylesheet" type="text/css" />    
 
     <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
 
@@ -42,40 +43,57 @@
     </style>
 
 </head>
-row justify-content-between
+
 <body>
-        <!-- Begin page -->
-        <div class="wrapper">
-            <!-- ========== Topbar Start ========== -->
-            <div style="background-color: blanchedalmond;" 
-                 class="container-fluid navbar-custom topnav-navbar ">
+<div>aaa</div>
 
-              <div id="d-inline-flex menu-toggle-button" >
-                <div>
-                    <button class="button-toggle-menu">
-                        <i class="mdi mdi-menu">
-                        </i>
-                    </button>
-                    <span>SGI서울보증</span>
-                </div>
-              </div>
+    <nav id="dgp-top-nav" class="navbar fixed-top navbar-expand-lg navbar-light bg-white" >
+        <div class="container-fluid" >
+            <button id="sidenav-toggler" data-bs-toggle="sidenav" data-bs-target="sidenav" type="button"
+             style="height:44px" class="btn rounded-circle btn-outline-dark me-3 " aria-expanded="false">
+                <i class="fas fa-bars fa-lg"></i>
+                <!--
+                    <i class="mdi mdi-menu"></i>
+                    <i class="fas fa-bars fa-lg"></i>
+                    <svg focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                -->
+            </button>
+            <a class="navbar-brand" href="#self_location">
+                DataPortal
+                <!-- 
+                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="16" alt="" loading="lazy" style="margin-top: -1px">
+                -->
+            </a>
 
-              <div style="background-color:aquamarine;" id="menu-toggle-button" >
-                MENU AREA 
-              </div>
-
+            <div id="search-container">
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <input class="form-control rounded" placeholder="input keyword ..." autocomplete="off" type="search" id="keyword">
+                    <span class="input-group-text border-0"><i class="fas fa-search" id="search-icon"></i></span>
+                </form>
             </div>
-            <!-- ========== Topbar Start ========== -->
+<!--
+            <div class="d-none"  id="search-container2">
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-text mdi mdi-magnify search-icon"></span>
+                        <input type="search" class="form-control" placeholder="Search..." id="top-search">
+                        </input>
+                        <button class=" btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+-->
+            <ul class="navbar-nav ms-auto d-flex flex-row">
+               <li class="me-3">표준</li>
+               <li class="me-3">구조</li>
+               <li class="me-3">품질</li>
+               <li class="me-3">흐름</li>
+               <li class="me-3">기타</li>
+               <li class="me-3">솔루션링크</li>
+               <li class="me-3">로그인</li>
+            </ul>
         </div>
-
-        <div class="row" >
-            <div class="col">
-                <div>AA</div>
-            </div>
-            <div class="col">
-                <div>bb</div>
-            </div>
-          </div>
+    </nav>
 
 </body>
 </html>
