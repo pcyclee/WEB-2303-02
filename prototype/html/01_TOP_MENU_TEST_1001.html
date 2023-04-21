@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+
+    
+
+    <link href="ui/fonts/nanumgothic.css" rel="stylesheet" >
+
+    <link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" >
+    <link href="ui/custom/css/custom.css"             rel="stylesheet">        
+
+    <!-- Icons css yclee 2022-10-25 -->
+
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+    <link href="ui/fontawesome-free-6.4.0-web/css/all.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+.button-toggle-menu {
+    border: none;
+    color: var(--bs-gray-800);
+    height: 30px; /* 70 */
+    line-height: 30px; /* 70 */
+    width: 30px; /* 60 */
+    background-color: transparent;
+    font-size: 22px; /* 24px*/
+    cursor: pointer;
+    float: left;
+    z-index: 1;
+    position: relative;
+    padding: 0px 0px; /* -24px */
+    margin-left: 0px; /* -24px */
+}
+.content-page {
+    /*
+    margin-left: 260px;
+    */
+    
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 70px 12px 65px;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+  <!-- 1 -->
+    <nav id="dgp-top-nav" class="navbar _fixed-top navbar-expand-lg navbar-light bg-white" >
+        <div class="container-fluid" >
+            <button id="sidenav-toggler" data-bs-toggle="sidenav" data-bs-target="sidenav" type="button"
+             style="height:44px" class="btn rounded-circle btn-outline-dark me-3 " aria-expanded="false">
+                <i class="fas fa-bars fa-lg"></i>
+                <!--
+                    <i class="mdi mdi-menu"></i>
+                    <i class="fas fa-bars fa-lg"></i>
+                    <svg focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+                -->
+            </button>
+            <a class="navbar-brand" href="#self_location">
+                DataPortal
+                <!-- 
+                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="16" alt="" loading="lazy" style="margin-top: -1px">
+                -->
+            </a>
+
+            <div id="search-container" class="me-auto">
+                <form class="d-none d-md-flex input-group w-auto my-auto">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="input keyword ..." autocomplete="off" type="search" id="keyword">
+                        <span class="input-group-text border-1"><i class="fas fa-search" onClick="alert('search');" id="search-icon"></i></span>
+                    </div>
+                </form>
+            </div>
+<!--
+            <div class="d-none"  id="search-container2">
+                <form>
+                    <div class="input-group">
+                        <span class="input-group-text mdi mdi-magnify search-icon"></span>
+                        <input type="search" class="form-control" placeholder="Search..." id="top-search">
+                        </input>
+                        <button class=" btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto d-flex flex-row "> <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul> -->
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">표준</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">품질</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">흐름</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">기타</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">솔루션링크</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="login_info" class="ms-3">
+                <a class="btn btn-sm btn-primary" >로그인</a>
+            </div>
+
+        </div>
+    </nav>
+
+  <!-- 2 -->
+    <nav id="dgp-top-nav" class="navbar _fixed-top navbar-expand-lg navbar-light bg-white" >
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto d-flex flex-row "> 
+                <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul> -->
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">표준</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">품질</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">흐름</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">기타</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">솔루션링크</a>
+                  </li>
+              </ul>
+          </div>
+          <div id="login_info" class="ms-3">
+              <a class="btn btn-sm btn-primary" >로그인</a>
+          </div>
+
+  </nav>
+
+  <!-- 3 -->
+  <nav id="dgp-top-nav" class="navbar _fixed-top navbar-expand-lg navbar-light bg-white" >
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto d-flex flex-row "> 
+          <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul> -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdownMenuLink" href="#"
+                   role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                >
+                  표준</a>
+                <ul class="dropdown-menu dropdown dropend" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item dropdown-toggle" id="dropdownMenuLink2" href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                      >Action</a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                        <li>
+                          <a class="dropdown-item" href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                          >Action1</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Another action1</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here1</a></li>
+                      </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">품질</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">흐름</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">기타</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">솔루션링크</a>
+            </li>
+        </ul>
+    </div>
+    <div id="login_info" class="ms-3">
+        <a class="btn btn-sm btn-primary" >로그인</a>
+    </div>
+
+</nav>
+
+
+<nav id="dgp-top-nav" class="navbar _fixed-top navbar-expand-lg navbar-light bg-white" >
+  <div class="container-fluid" >
+      <button id="sidenav-toggler" data-bs-toggle="sidenav" data-bs-target="sidenav" type="button"
+       style="height:44px" class="btn rounded-circle btn-outline-dark me-3 " aria-expanded="false">
+          <i class="fas fa-bars fa-lg"></i>
+          <!--
+              <i class="mdi mdi-menu"></i>
+              <i class="fas fa-bars fa-lg"></i>
+              <svg focusable="false" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+          -->
+      </button>
+      <a class="navbar-brand" href="#self_location">
+          DataPortal
+          <!-- 
+              <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="16" alt="" loading="lazy" style="margin-top: -1px">
+          -->
+      </a>
+
+      <div id="search-container" class="me-auto">
+          <form class="d-none d-md-flex input-group w-auto my-auto">
+              <div class="input-group">
+                  <input class="form-control" placeholder="input keyword ..." autocomplete="off" type="search" id="keyword">
+                  <span class="input-group-text border-1"><i class="fas fa-search" onClick="alert('search');" id="search-icon"></i></span>
+              </div>
+          </form>
+      </div>
+<!--
+      <div class="d-none"  id="search-container2">
+          <form>
+              <div class="input-group">
+                  <span class="input-group-text mdi mdi-magnify search-icon"></span>
+                  <input type="search" class="form-control" placeholder="Search..." id="top-search">
+                  </input>
+                  <button class=" btn btn-primary" type="submit">Search</button>
+              </div>
+          </form>
+      </div>
+-->
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+          <div class="dropdown ms-auto">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              표준
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li>
+                <button class="dropdown-item" type="button">Another action1</button>
+              </li>
+            </ul>            
+          </div>
+        
+          <div class="dropdown ms-2">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              구조
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Action</button></li>
+              <li><button class="dropdown-item" type="button">Another action</button></li>
+              <li>
+                <button class="dropdown-item" type="button">Another action1</button>
+              </li>
+            </ul>      
+          </div>
+        
+          <div class="dropdown ms-2">
+            <button class="btn btn-sm btn-secondary " type="button" id="dropdownMenu2" aria-expanded="false">
+              품질
+            </button>
+          </div>
+
+          <div class="btn-group ms-2 dropstart">
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropend
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+            </ul>
+          </div>     
+
+      </div>
+
+      <div id="login_info" class="ms-3">
+          <a class="btn btn-sm btn-primary" >로그인</a>
+      </div>
+
+  </div>
+</nav>
+
+
+
+
+
+</body>
+</html>

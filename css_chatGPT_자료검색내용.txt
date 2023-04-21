@@ -1,0 +1,22 @@
+--
+CSS 공부 사이트 내용
+
+
+-- .breadcrumb-item 다음에 .breadcrumb-item 이 나오는 경우 2번째 부터 여백 주기
+
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: var(--bs-breadcrumb-item-padding-x);
+} 
+
+
+-- ::before 
+
+.list-group-numbered > .list-group-item::before {
+  content: counters(section, ".") ". ";
+  counter-increment: section;
+}
+
+
+
+
+
