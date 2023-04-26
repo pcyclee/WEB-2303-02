@@ -10,7 +10,14 @@
 }
 
 :root {
-    --dp-font-sans-serif: 'Nanum Gothic', system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --dp-font-nanum-gothic: 'Nanum Gothic', system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --dp-font-nanum-gothic-bold: 'Nanum Gothic Bold', system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --dp-font-nanumsquareneo-variable-bak: 'NanumSquareNeo Variable', system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --dp-font-nanumsquareneo-variable: 'NanumSquareNeo Variable',"Segoe UI Emoji",Arial,system-ui;
+    --dp-font-bitstream-vera-serif-bold: 'Bitstream Vera Serif Bold';
+    --dp-font-malgun-gothic: "Malgun Gothic","맑은 고딕";
+    --dp-font-nanum-square-round-regular: "Nanum Square Round Regular";
+    
 }
 
 a:hover {
@@ -20,14 +27,30 @@ a:hover {
 
 body {
     margin: 0;
-    font-family: var(--dp-font-sans-serif);
+    /* 
+    font-family: var(--dp-font-nanum-gothic); 
+    font-family: var(--dp-font-nanumsquareneo-variable);  
+    font-family: var(--dp-font-nanum-gothic-bold-serif);    
+    */
+    font-family: var(--dp-font-nanum-gothic);  
+
     font-size: 1rem;
-    font-weight: 400;
+    /*font-size: 15px;*/
+    /*font-weight: bold; font-weight: 350;*/
+    font-weight: 250;
     line-height: 1.5;
     /*color: #212529;*/
     background-color: #fff;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+}
+
+.font-nanum-square-round-regular {
+    font-family: var(--dp-font-nanum-square-round-regular);  
+    font-size: 1rem;
+    font-weight: 250;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;    
 }
 
 .content-page {
@@ -40,3 +63,57 @@ body {
     padding: 70px 12px 65px;
 }
 
+/* accordion tree */
+
+.clr-orange {
+    color: orange;
+}
+
+.accordion-indent {
+    padding-left: 1rem;
+}
+
+.dp-trvw-folder.collapsed i.expander {
+    color: black;
+    display: inline-block;
+    /*width: 20px;
+    height: 20px;*/
+    transform: rotate(0deg);    
+}
+.dp-trvw-folder.collapsed.dp-empty i.expander {
+    --dp-empty-color: #c0c0c0;
+    color: var(--dp-empty-color);
+    display: inline-block;
+    /*width: 20px;
+    height: 20px;*/
+    transform: rotate(0deg);    
+}
+.dp-trvw-folder > i.expander {
+    /*color: gray;*/
+    color: black;
+    /*--dp-folder-rotate: rotate(-90deg);*/
+    /*transform : rotate(90deg);*/
+    display: inline-block;
+    font-size: 1.2rem;
+    /*width: 20px;
+    height: 20px;*/
+    background-color: transparent;
+    transform: rotate(90deg);
+    /*transition:  transform 0.2s ease-in-out;*/
+}
+
+div.dp-tree-border {
+    padding: .5rem .5rem;
+    border: 1 solid black !important;
+    border-radius: 0.25rem;
+    /*background-color: #dfdfdf;*/
+    background-color: white;
+
+    /*border-color: yellow;*/
+    /*box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);*/
+}
+
+.dp-trvw-item, .dp-trvw-folder {
+    /*height: 1.8rem;*/
+    height: 1.8rem;
+}

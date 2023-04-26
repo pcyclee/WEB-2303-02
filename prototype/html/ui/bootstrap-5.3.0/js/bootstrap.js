@@ -1524,6 +1524,7 @@
       }
       if (this._config.toggle) {
         this.toggle();
+        //console.log("toggle : constructor");
       }
     }
 
@@ -1540,6 +1541,7 @@
 
     // Public
     toggle() {
+      //console.log("toggle : " + JSON.stringify(this) ); 
       if (this._isShown()) {
         this.hide();
       } else {
@@ -1547,6 +1549,7 @@
       }
     }
     show() {
+      //console.log("show - ");
       if (this._isTransitioning || this._isShown()) {
         return;
       }
@@ -1587,6 +1590,7 @@
       this._element.style[dimension] = `${this._element[scrollSize]}px`;
     }
     hide() {
+      //console.log("hide - ");      
       if (this._isTransitioning || !this._isShown()) {
         return;
       }
@@ -1616,6 +1620,7 @@
       this._queueCallback(complete, this._element, true);
     }
     _isShown(element = this._element) {
+      //console.log("_isShown : element.id : " + element.id );
       return element.classList.contains(CLASS_NAME_SHOW$7);
     }
 
@@ -1641,6 +1646,10 @@
       }
     }
     _getFirstLevelChildren(selector) {
+      
+      //console.log('_getFirstLevelChildren: ' + CLASS_NAME_DEEPER_CHILDREN);
+      //console.log('_getFirstLevelChildren: ' + JSON.stringify(this._config.parent));
+      
       const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
       // remove children if greater depth
       return SelectorEngine.find(selector, this._config.parent).filter(element => !children.includes(element));
@@ -1686,6 +1695,7 @@
       Collapse.getOrCreateInstance(element, {
         toggle: false
       }).toggle();
+      //console.log("eventhandler.on");
     }
   });
 

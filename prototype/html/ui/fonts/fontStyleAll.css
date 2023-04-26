@@ -1,0 +1,44 @@
+
+@charset "utf-8";
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./NanumGothic/NanumGothic-Regular.eot);
+  src: url(./NanumGothic/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(./NanumGothic/NanumGothic-Regular.woff2) format('woff2'),
+       url(./NanumGothic/NanumGothic-Regular.woff) format('woff')
+       /*url(./NanumGothic-Regular.ttf) format('truetype');*/
+}
+@font-face {
+  font-family: 'Nanum Gothic Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: url(./NanumGothic/NanumGothic-Bold.eot);
+  src: url(./NanumGothic/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
+       url(./NanumGothic/NanumGothic-Bold.woff2) format('woff2'),
+       url(./NanumGothic-Bold.woff) format('woff')
+       /*url(./NanumGothic-Bold.ttf) format('truetype');*/
+}
+
+@font-face {
+  font-family: 'Nanum Square Round Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./NanumSquareRound/otf/NanumSquareRoundOTFR.otf);
+  src: url(./NanumSquareRound/otf/NanumSquareRoundOTFR.otf) format('opentype');
+       /*url(./NanumGothic-Bold.woff2) format('woff2'),
+       url(./NanumGothic-Bold.woff) format('woff')
+       /*url(./NanumGothic-Bold.ttf) format('truetype');*/
+}
+
+@font-face {
+  font-family: "NanumSquareNeo Variable";
+  src: url("./NanumSquareNeo/NanumSquareNeo-Variable.ttf");
+}
+
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("https://mdn.github.io/css-examples/web-fonts/VeraSeBd.ttf");
+}
+
