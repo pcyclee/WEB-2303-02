@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+
+    
+<!--
+    <link href="ui/fonts/fontStyleAll.css" rel="stylesheet" >
+-->
+	<link href="ui/fonts/fontStyleAll.css" rel="stylesheet" >
+
+    <link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" >
+    <link href="ui/custom/css/custom.css"             rel="stylesheet">        
+
+    <!-- Icons css yclee 2022-10-25 -->
+
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+    <link href="ui/fontawesome-free-6.4.0-web/css/all.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+    <!--<script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>-->
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.js"></script>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+<!-- 메인 컨텐츠 시작 -->
+<div class="content-page">
+
+	<div class="container-fluid">
+			<H4>트리 구조 UI 기본</H4>
+			<div class="container">
+				<div class="dp-tree-border" id="tree1">
+					<div class="dp-trvw-item item d-flex align-items-center" >
+						
+						<div class="dp-trvw-folder collapsed show d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne01">
+							<i class="uil uil-angle-right expander"></i>
+						</div>
+						<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+						<button class="dp-trvw-btn">Asia</button>
+					</div>
+					<div class="item subitem ms-3">
+						<div id="collapseOne01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+							<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+								<i class="uil uil-angle-right expander"></i>
+								<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">Item 1-1</button>
+							</div>
+							<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+								<i class="uil uil-angle-right expander"></i>
+								<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">Item 2-1</button>
+							</div>
+
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder dp-folder-empty collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#none">
+									<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+								</div>
+								<button class="dp-trvw-btn">빈폴더(empty folder)</button>
+							</div>
+
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne011">
+									<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg" ></i>
+								</div>
+								<button class="dp-trvw-btn">다람쥐 헌 쳇바퀴에 타고파</button>
+							</div>
+						    <div class="item subitem ms-3">
+								<div id="collapseOne011" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+									<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+										<i class="uil uil-angle-right expander"></i>
+										<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">Africa Item 2-1</button>
+									</div>
+									<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+										<i class="uil uil-angle-right expander"></i>
+										<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">Africa Item 2-2</button>
+									</div>
+								</div>
+							</div>			
+						</div>
+					</div>
+
+					<div class="dp-trvw-item item d-flex align-items-center" >
+						<div class="dp-trvw-folder dp-folder-empty collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#none">
+							<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+						</div>
+						<button class="dp-trvw-btn">다람쥐 헌 쳇바퀴에 타고파</button>
+					</div>
+
+				</div>	
+				
+			</div>
+
+			<H4 class="mt-3">트리 구조 UI checkbox 추가</H4>
+			<div class="container">
+				<div class="dp-tree-border" id="tree1">
+
+					<div class="dp-trvw-item item d-flex align-items-center" >
+						
+						<div class="dp-trvw-folder collapsed show d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne01">
+							<i class="uil uil-angle-right expander"></i>
+						</div>
+						<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+						<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+						<button class="dp-trvw-btn">아시아 리젼</button>
+					</div>
+					<div class="item subitem ms-3">
+						<div id="collapseOne01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+
+							<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+								<i class="uil uil-angle-right expander"></i>
+								<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+								<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">아이템 1-1</button>
+							</div>
+							<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+								<i class="uil uil-angle-right expander"></i>
+								<div class="form-check"><input type="checkbox" class="form-check-input" id="dropdownCheck"></div>
+								<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">아이템 2-1</button>
+							</div>
+	
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder dp-folder-empty collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#none">
+									<i class="uil uil-angle-right expander"></i>
+								</div>
+								<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+								<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+								<button class="dp-trvw-btn">빈폴더</button>	
+							</div>
+	
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne011">
+									<i class="uil uil-angle-right expander"></i>
+								</div>
+								<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+								<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg" ></i>
+								<button class="dp-trvw-btn">다람쥐</button>
+							</div>
+							<div class="item subitem ms-3">
+								<div id="collapseOne011" class="item-group-content ms-3 accordion-collapse collapse show" data-bs-parent="">
+									<div class="dp-trvw-item list-group-item-action ms-4 d-flex align-items-center">
+										<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+										<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">다람쥐 1</button>
+									</div>
+									<div class="dp-trvw-item list-group-item-action ms-4 d-flex align-items-center">
+										<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+										<i class="dp-tree-icon mdi mdi-file me-2 fa-lg"></i><button class="dp-trvw-btn">다람쥐 2</button>
+									</div>
+								</div>
+							</div>			
+						</div>
+					</div>
+
+					<div class="dp-trvw-item item d-flex align-items-center" >
+						<div class="dp-trvw-folder dp-folder-empty collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#none">
+							<i class="uil uil-angle-right expander"></i>
+						</div>
+						<div class="form-check"><input type="checkbox" class="form-check-input me-1" id="dropdownCheck"></div>
+						<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+						<button class="dp-trvw-btn">다람쥐 노노 1</button>
+					</div>
+	
+				</div>	
+			</div>	
+			
+			<H4 class="mt-3">DB > 주제영역 > 테이블</H4>
+			<div class="container">
+				<div class="dp-tree-border" id="tree1">
+					<div class="dp-trvw-item item d-flex align-items-center" >
+						
+						<div class="dp-trvw-folder collapsed show d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#db01">
+							<i class="uil uil-angle-right expander"></i>
+						</div>
+						<i class="dp-tree-icon mdi mdi-database me-2 fa-lg"></i>
+						<button class="dp-trvw-btn">기간계</button>
+					</div>
+					<div class="item subitem ms-3">
+						<div id="db01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder dp-folder-empty collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#none">
+									<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+								</div>
+								<button class="dp-trvw-btn">내용없음</button>
+							</div>
+							<div class="dp-trvw-item item d-flex align-items-center" >
+								<div class="dp-trvw-folder collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#db01-01">
+									<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+								</div>
+								<button class="dp-trvw-btn">주제영역</button>
+							</div>
+							<div class="item subitem ms-3">
+								<div id="db01-01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+									<div class="dp-trvw-item item d-flex align-items-center" >
+										<div class="dp-trvw-folder d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#db01-01-01">
+											<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg" ></i>
+										</div>
+										<button class="dp-trvw-btn">주제영역01</button>
+									</div>
+									<div class="item subitem ms-3">
+										<div id="db01-01-01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+											<div class="dp-trvw-item item d-flex align-items-center" >
+												<div class="dp-trvw-folder collapsed show d-flex align-items-center" id="1" type="button" data-bs-toggle="collapse" data-bs-target="#db01-01-01-01">
+													<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+												</div>
+												<button class="dp-trvw-btn">주제영역01-01</button>
+											</div>
+											<div class="item subitem ms-3">
+												<div id="db01-01-01-01" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+													<div class="dp-trvw-item item list-group-item-action d-flex align-items-center">
+														<i class="uil uil-angle-right expander"></i>
+														<i class="dp-tree-icon mdi mdi-table-large me-2 fa-lg"></i>
+														<button class="dp-trvw-btn">테이블</button>
+													</div>
+												</div>
+											</div>
+											
+											<div class="dp-trvw-item item d-flex align-items-center" >
+												<div class="dp-trvw-folder dp-folder-empty collapsed list-group-item-action d-flex align-items-center">
+													<i class="uil uil-angle-right expander"></i>
+													<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i>
+													<button class="dp-trvw-btn">주제영역01-02</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="dp-trvw-item item d-flex align-items-center" >
+										<div class="dp-trvw-folder d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#db01-01-02">
+											<i class="uil uil-angle-right expander"></i><i class="dp-tree-icon mdi mdi-folder me-2 fa-lg" ></i>
+										</div>
+										<button class="dp-trvw-btn">주제영역02</button>
+									</div>
+									<div class="item subitem ms-3">
+										<div id="db01-01-02" class="item-group-content accordion-collapse collapse show" data-bs-parent="">
+											<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+												<i class="uil uil-angle-right expander"></i>
+												<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i><button class="dp-trvw-btn">주제영역02-01</button>
+											</div>
+											<div class="dp-trvw-item list-group-item-action d-flex align-items-center">
+												<i class="uil uil-angle-right expander"></i>
+												<i class="dp-tree-icon mdi mdi-folder me-2 fa-lg"></i><button class="dp-trvw-btn">주제영역02-02</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>	
+				
+			</div>
+
+	</div>
+
+</div>
+ 							
+
+  </div>
+<!-- 메인 컨텐츠 끝 -->
+
+
+</body>
+</html>
