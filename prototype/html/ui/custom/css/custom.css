@@ -24,6 +24,11 @@
     --dp-font-nanum-square-round-regular: "Nanum Square Round Regular";
 }
 
+*, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     /* 
@@ -194,3 +199,104 @@ div.dp-tree-border {
 }
 
 /*--bs-border-color: #dee2e6;*/
+
+
+/* ****************************************************** */
+/* Drop Down Slide Animation */
+/* ****************************************************** */
+.dropdown-menu {
+    -webkit-box-shadow: var(--ct-box-shadow);
+    box-shadow: var(--ct-box-shadow)
+}
+
+.dropdown-header {
+    margin-top: 0
+}
+
+.dropdown-menu-animated.dropdown-menu-end[style] {
+    left: auto;
+    right: 0
+}
+
+.dropdown-menu-animated {
+    -webkit-animation-name: DropDownSlide;
+    animation-name: DropDownSlide;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    margin: 0;
+    z-index: 1000
+}
+
+.dropdown-menu-animated.show {
+    top: 100% !important
+}
+
+.dropdown-menu-animated i {
+    display: inline-block
+}
+
+.dropdown-menu-animated.dropdown-menu[data-popper-placement^=left], .dropdown-menu-animated.dropdown-menu[data-popper-placement^=right], .dropdown-menu-animated.dropdown-menu[data-popper-placement^=top] {
+    top: auto !important;
+    -webkit-animation: none !important;
+    animation: none !important
+}
+
+@-webkit-keyframes DropDownSlide {
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+}
+
+@keyframes DropDownSlide {
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+}
+
+@media (min-width:576px) {
+    .dropdown-lg {
+        width: 320px
+    }
+}
+
+.dropdown-icon-item {
+    display: block;
+    border-radius: 3px;
+    line-height: 34px;
+    text-align: center;
+    padding: 15px 0 9px;
+    display: block;
+    border: 1px solid transparent;
+    color: var(--ct-dropdown-link-color)
+}
+
+.dropdown-icon-item img {
+    height: 24px
+}
+
+.dropdown-icon-item span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.dropdown-icon-item:hover {
+    background-color: var(--ct-dropdown-link-hover-bg);
+    color: var(--ct-dropdown-link-hover-color)
+}
