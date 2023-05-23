@@ -24,11 +24,6 @@
     --dp-font-nanum-square-round-regular: "Nanum Square Round Regular";
 }
 
-a:hover {
-    font-weight: bold;
-    background-color:bisque;  
-}
-
 body {
     margin: 0;
     /* 

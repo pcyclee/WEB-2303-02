@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" -->
+    <!--link href="ui/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet" -->
+
+    
+
+    <link href="ui/fonts/nanumgothic.css" rel="stylesheet" >
+
+    <link href="ui/bootstrap-5.3.0/css/bootstrap.css" rel="stylesheet" >
+    <link href="ui/custom/css/custom.css"             rel="stylesheet">        
+
+    <!-- Icons css yclee 2022-10-25 -->
+
+    <link href="ui/material-design-icons/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/remixicon-2.5.0/fonts/remixicon.css"               media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/unicons.css"                 media="all" rel="stylesheet" type="text/css" />
+    <link href="ui/unicons/css/animation.css"                 media="all" rel="stylesheet" type="text/css" />    
+    <link href="ui/fontawesome-free-6.4.0-web/css/all.css"                 media="all" rel="stylesheet" type="text/css" />    
+
+    <script src="ui/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      /*.top-area-component{background-color: #fc6;}*/
+.top-menu-bg-d-clr {background-color: lightsteelblue;}
+.notification-list .noti-icon {
+    font-size: 20px;
+    vertical-align: middle;
+    line-height: 24px;
+}
+
+.notification-list .noti-icon-badge {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 6px;
+    border-radius: 50%;
+    height: 7px;
+    width: 7px;
+    background-color: #fa5c7c;
+}
+
+.dropdown-menu {
+    -webkit-box-shadow: var(--ct-box-shadow);
+    box-shadow: var(--ct-box-shadow)
+}
+
+.dropdown-header {
+    margin-top: 0
+}
+
+.dropdown-menu-animated.dropdown-menu-end[style] {
+    left: auto;
+    right: 0
+}
+
+.dropdown-menu-animated {
+    -webkit-animation-name: DropDownSlide;
+    animation-name: DropDownSlide;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    margin: 0;
+    z-index: 1000
+}
+
+.dropdown-menu-animated.show {
+    top: 100% !important
+}
+
+.dropdown-menu-animated i {
+    display: inline-block
+}
+
+.dropdown-menu-animated.dropdown-menu[data-popper-placement^=left], .dropdown-menu-animated.dropdown-menu[data-popper-placement^=right], .dropdown-menu-animated.dropdown-menu[data-popper-placement^=top] {
+    top: auto !important;
+    -webkit-animation: none !important;
+    animation: none !important
+}
+
+@-webkit-keyframes DropDownSlide {
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+}
+
+@keyframes DropDownSlide {
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    0% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px)
+    }
+}
+
+@media (min-width:576px) {
+    .dropdown-lg {
+        width: 320px
+    }
+}
+
+.dropdown-icon-item {
+    display: block;
+    border-radius: 3px;
+    line-height: 34px;
+    text-align: center;
+    padding: 15px 0 9px;
+    display: block;
+    border: 1px solid transparent;
+    color: var(--ct-dropdown-link-color)
+}
+
+.dropdown-icon-item img {
+    height: 24px
+}
+
+.dropdown-icon-item span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.dropdown-icon-item:hover {
+    background-color: var(--ct-dropdown-link-hover-bg);
+    color: var(--ct-dropdown-link-hover-color)
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- 메인 컨텐츠 시작 -->
+<class="wrap">
+
+<h3>
+  TOP MENU
+</h3>
+<hr/>
+  <header>
+
+    <nav class="---fixed-top navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid top-menu-bg-d-clr">
+
+        <div class="top-area-comp p-2" style="font-weight: bold;">Data.Gov.Portal</div>
+        <div class="top-area-comp p-2">
+          <!-- SEARCH KEYWORD -->
+          <div id="search-container" class="me-auto">
+            <form class="d-none d-md-flex input-group w-auto my-auto">
+                <div class="input-group">
+                    <input class="form-control" placeholder="input keyword ..." autocomplete="off" type="search" id="keyword">
+                    <span class="input-group-text border-1"><i class="fas fa-search" onClick="alert('search');" id="search-icon"></i></span>
+                </div>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- MENU | MENU | MENU | MENU | MENU -->
+        <div class="top-area-comp p-2 ms-auto">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>     
+            </li>
+
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                정책
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">표준지침</a></li>
+                <li><a class="dropdown-item" href="#">가이드</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">구조지침</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                데이터탐색
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>            
+
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                표준
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                품질
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- FUNCTION ICON {FAVORATE,ALERT,SHORTCUT_LINK} -->
+        <!-- star -->
+        <div class="top-area-comp p-2">
+          <ul class="navbar-nav list-unstyled d-flex flex-row m-auto ms-3">
+            <li class="nav-item notification-list position-relative">
+              <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="ri-star-line noti-icon"></i>
+              </a>
+              <!-- -->
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg py-0">
+
+                <!-- ---------------------------------- -->
+                                <div class="d-flex flex-column" >
+                                  <div class="dropdown-header noti-title d-inline-block">
+                                  즐겨찾기 메뉴
+                                  </div>
+                                    <a href="#" class="dropdown-item">데이터탐색1</a>
+                                    <a href="#" class="dropdown-item">데이터탐색2</a>
+                                    <a href="#" class="dropdown-item">데이터탐색3</a>
+                                    <a href="#" class="dropdown-item">데이터탐색4</a>
+                                </div>
+                <!-- ---------------------------------- -->
+                
+                              </div>
+                              <!-- -->
+
+            </li>
+
+
+
+            <li class="nav-item notification-list position-relative">
+              <a class="nav-link arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="ri-notification-3-line noti-icon"></i>
+                <span class="noti-icon-badge"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg py-0">
+<!-- ---------------------------------- -->
+                <div class="p-2 border-top-0 border-start-0 border-end-0 border-dashed border">
+                  <div class="row align-items-center">
+                      <div class="col">
+                          <h6 class="m-0 font-16 fw-semibold"> Notification ㄴㄴㄴㄴ</h6>
+                      </div>
+                      <div class="col-auto">
+                          <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                              <small>Clear All</small>
+                          </a>
+                      </div>
+                  </div>
+                </div>
+
+                <!-- All-->
+                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+                    View All
+                </a>
+<!-- ---------------------------------- -->
+              </div>
+
+
+            </li>
+            <li class="nav-item notification-list position-relative">
+              <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="ri-apps-2-line noti-icon"></i>
+              </a>
+              <!-- -->
+              <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end dropdown-lg py-0">
+
+<!-- ---------------------------------- -->
+                <div class="d-flex flex-column" >
+                  <div class="dropdown-header noti-title d-inline-block">
+                  시스템 바로가기
+                  </div>
+                    <a href="#" class="dropdown-item">비즈메타</a>
+                    <a href="#" class="dropdown-item">품질</a>
+                    <a href="#" class="dropdown-item">흐름</a>
+                    <a href="#" class="dropdown-item">포털관리자</a>
+                </div>
+<!-- ---------------------------------- -->
+
+              </div>
+              <!-- -->
+            </li>
+          </ul>
+        </div>
+
+        <!-- USER INFO -->
+        <div class="top-area-comp">
+          <ul class="navbar-nav list-unstyled d-flex flex-row m-auto ms-3">
+            <li class="nav-item notification-list position-relative">
+              <a class="nav-link arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="ri-user-line noti-icon"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg py-0">
+<!-- ---------------------------------- -->
+                <div class="d-flex flex-column" >
+                  <div class="dropdown-header noti-title d-inline-block">
+                  사용자 정보
+                  </div>
+                    <a href="#" class="dropdown-item">내 계정</a>
+                    <a href="#" class="dropdown-item">개인설정</a>
+                    <a href="#" class="dropdown-item">로그아웃</a>
+                </div>
+<!-- ---------------------------------- -->
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <!--
+        <div class="top-area-comp p-2">
+          <ul class="list-unstyled d-flex flex-row m-auto">
+            <li class="dropdown ps-3 ri-user-line"></li>
+            <li class="pe-3"></li>            
+          </ul>
+        </div>
+        -->        
+
+      </div>
+
+    </nav>    
+
+
+  </header>
+</div>
+
+
+<!-- 메인 컨텐츠 끝 -->
+
+
+</body>
+</html>
